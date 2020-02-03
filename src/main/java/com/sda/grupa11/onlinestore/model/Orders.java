@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="orders")
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,10 +33,10 @@ public class Order {
     private String status;
 
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderLine> orderLine;
 
-    public Order(){}
+    public Orders(){}
 
     public Long getId() {
         return id;
@@ -101,9 +101,9 @@ public class Order {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Order)) return false;
-        Order order = (Order) o;
-        return getId().equals(order.getId());
+        if (!(o instanceof Orders)) return false;
+        Orders orders = (Orders) o;
+        return getId().equals(orders.getId());
     }
 
     @Override
