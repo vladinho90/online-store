@@ -24,7 +24,7 @@ public class UserService {
     public List<User> findAll (){
         return userRepository.findAll();
     }
-    
+
     public String save(User user){
         userRepository.save(user);
         return "user " + user + " was saved";
