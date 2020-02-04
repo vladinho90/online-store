@@ -2,6 +2,7 @@ package com.sda.grupa11.onlinestore.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +27,7 @@ public class Orders {
 
     @Column(name = "total_price")
     //@NotNull
-    private double totalPrice;
+    private BigDecimal totalPrice;
 
     @Column(name = "status")
     @NotNull
@@ -62,13 +63,6 @@ public class Orders {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
 
     public String getStatus() {
         return status;
@@ -86,9 +80,17 @@ public class Orders {
         this.orderLine = orderLine;
     }
 
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     @Override
     public String toString() {
-        return "Order{" +
+        return "Orders{" +
                 "id=" + id +
                 ", user=" + user +
                 ", deliveryAddress=" + deliveryAddress +
@@ -101,13 +103,13 @@ public class Orders {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Orders)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Orders orders = (Orders) o;
-        return getId().equals(orders.getId());
+        return id.equals(orders.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(id);
     }
 }
