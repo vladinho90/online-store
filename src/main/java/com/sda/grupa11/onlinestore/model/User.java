@@ -33,7 +33,7 @@ public class User {
 
     @NotNull
     @OneToMany(mappedBy = "user")
-    private List<Order> orderList;
+    private List<Orders> ordersList;
 
     //TODO: CATEGORY ENUM
 
