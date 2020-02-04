@@ -1,7 +1,12 @@
 package com.sda.grupa11.onlinestore.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity(name="Product")
@@ -23,7 +28,7 @@ public class Product {
 
     @Column(name = "price")
     @NotNull
-    private String price;
+    private BigDecimal price;
 
     @Column(name = "stock")
     @NotNull
@@ -32,6 +37,17 @@ public class Product {
     @Column(name = "picture_URL")
     @NotNull
     private String pictureURL;
+
+    @Column(name = "units_in_stock")
+    private int unitsInStock;
+
+    @Column(name = "date_created")
+    @CreationTimestamp
+    private Date dateCreated;
+
+    @Column(name = "last_updated")
+    @UpdateTimestamp
+    private Date lastUpdated;
 
 
 
@@ -59,13 +75,6 @@ public class Product {
         this.title = title;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
 
     public boolean isStock() {
         return stock;
@@ -83,28 +92,63 @@ public class Product {
         this.pictureURL = pictureURL;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public int getUnitsInStock() {
+        return unitsInStock;
+    }
+
+    public void setUnitsInStock(int unitsInStock) {
+        this.unitsInStock = unitsInStock;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", category=" + category +
                 ", title='" + title + '\'' +
-                ", price='" + price + '\'' +
+                ", price=" + price +
                 ", stock=" + stock +
                 ", pictureURL='" + pictureURL + '\'' +
+                ", unitsInStock=" + unitsInStock +
+                ", dateCreated=" + dateCreated +
+                ", lastUpdated=" + lastUpdated +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Product)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return getId().equals(product.getId());
+        return id.equals(product.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(id);
     }
 }
