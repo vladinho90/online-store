@@ -33,7 +33,7 @@ public class Orders {
     private String status;
 
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orders", cascade = CascadeType.ALL)
     private List<OrderLine> orderLine;
 
     public Orders(){}

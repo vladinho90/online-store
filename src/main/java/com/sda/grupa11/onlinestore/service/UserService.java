@@ -1,42 +1,69 @@
 package com.sda.grupa11.onlinestore.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sda.grupa11.onlinestore.dto.UserMapper;
+import com.sda.grupa11.onlinestore.dto.UserRequest;
+import com.sda.grupa11.onlinestore.dto.UserResponse;
 import com.sda.grupa11.onlinestore.model.User;
 import com.sda.grupa11.onlinestore.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
 
-    @Autowired
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
     private UserRepository userRepository;
+    private UserMapper userMapper;
+    private ObjectMapper jacksonObjectMapper;
 
-    public User findById (Long id){
-        Optional<User> user= userRepository.findById(id);
-        return user.orElseThrow(
-                () -> new RuntimeException("user with id " + id + " does not exist")
-        );
+    @Autowired
+    public UserService(UserRepository userRepository, UserMapper userMapper, ObjectMapper jacksonObjectMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+        this.jacksonObjectMapper = jacksonObjectMapper;
     }
 
-    public List<User> findAll (){
-        return userRepository.findAll();
+
+    public UserResponse findById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow( () -> new RuntimeException("user not found"));
+        return userMapper.toDto(user);
     }
 
-    public String save(User user){
-        userRepository.save(user);
-        return "user " + user + " was saved";
+    public List<UserResponse> findAll() {
+        List<User> users = userRepository.findAll();
+        return userMapper.toDto(users);
     }
 
-    public String update(Long id, User user){
-        User userToBeUpdated = findById(id);
-       // userRepository.
-        return null;
+    public UserResponse save(UserRequest userRequest) {
+        User user = userMapper.toEntity(userRequest);
+        User savedUser = userRepository.save(user);
+        return userMapper.toDto(savedUser);
     }
 
-    public String deleteById(Long id){
+    public UserResponse update(Long id, UserRequest userRequest) {
+        User user = userRepository.findById(id)
+                .orElseThrow( () -> new RuntimeException("user not found"));
+
+        updateFields(userRequest, user);
+
+        User savedUser = userRepository.save(user);
+
+        return userMapper.toDto(savedUser);
+    }
+
+    private void updateFields(UserRequest userRequest, User user) {
+        user.setUsername(userRequest.getUsername());
+        user.setPassword(userRequest.getPassword());
+        user.setAddress(userRequest.getAddress());
+    }
+
+    public String deleteById(Long id) {
         userRepository.deleteById(id);
         return "user deleted successfully";
     }
