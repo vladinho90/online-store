@@ -1,9 +1,9 @@
 package com.sda.grupa11.onlinestore.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sda.grupa11.onlinestore.dto.UserMapper;
-import com.sda.grupa11.onlinestore.dto.UserRequest;
-import com.sda.grupa11.onlinestore.dto.UserResponse;
+import com.sda.grupa11.onlinestore.dto.user.UserMapper;
+import com.sda.grupa11.onlinestore.dto.user.UserRequest;
+import com.sda.grupa11.onlinestore.dto.user.UserResponse;
 import com.sda.grupa11.onlinestore.model.User;
 import com.sda.grupa11.onlinestore.repository.UserRepository;
 import org.slf4j.Logger;
@@ -50,14 +50,14 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow( () -> new RuntimeException("user not found"));
 
-        updateFields(userRequest, user);
+        updateFields(user, userRequest);
 
         User savedUser = userRepository.save(user);
 
         return userMapper.toDto(savedUser);
     }
 
-    private void updateFields(UserRequest userRequest, User user) {
+    private void updateFields(User user, UserRequest userRequest) {
         user.setUsername(userRequest.getUsername());
         user.setPassword(userRequest.getPassword());
         user.setAddress(userRequest.getAddress());
