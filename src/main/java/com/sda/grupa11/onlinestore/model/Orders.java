@@ -35,7 +35,7 @@ public class Orders {
 
     @NotNull
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "orders", cascade = CascadeType.ALL)
-    private List<OrderLine> orderLine;
+    private List<OrderLine> orderLineList;
 
     public Orders(){}
 
@@ -72,12 +72,12 @@ public class Orders {
         this.status = status;
     }
 
-    public List<OrderLine> getOrderLine() {
-        return orderLine;
+    public List<OrderLine> getOrderLineList() {
+        return orderLineList;
     }
 
-    public void setOrderLine(List<OrderLine> orderLine) {
-        this.orderLine = orderLine;
+    public void setOrderLineList(List<OrderLine> orderLine) {
+        this.orderLineList = orderLine;
     }
 
     public BigDecimal getTotalPrice() {
@@ -96,7 +96,7 @@ public class Orders {
                 ", deliveryAddress=" + deliveryAddress +
                 ", totalPrice=" + totalPrice +
                 ", status='" + status + '\'' +
-                ", orderLine=" + orderLine +
+                ", orderLine=" + orderLineList +
                 '}';
     }
 
