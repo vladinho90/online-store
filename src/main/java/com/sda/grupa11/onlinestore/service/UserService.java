@@ -61,6 +61,7 @@ public class UserService {
         user.setUsername(userRequest.getUsername());
         user.setPassword(userRequest.getPassword());
         user.setAddress(userRequest.getAddress());
+        user.setOrdersList(userRequest.getOrdersList());
     }
 
     public String deleteById(Long id) {

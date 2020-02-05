@@ -79,6 +79,14 @@ public class User {
         this.role = role;
     }
 
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -87,6 +95,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", address=" + address +
                 ", role=" + role +
+                ", ordersList=" + ordersList +
                 '}';
     }
 
