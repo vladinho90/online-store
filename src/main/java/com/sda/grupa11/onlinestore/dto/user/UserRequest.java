@@ -1,4 +1,4 @@
-package com.sda.grupa11.onlinestore.dto;
+package com.sda.grupa11.onlinestore.dto.user;
 
 import com.sda.grupa11.onlinestore.model.Address;
 

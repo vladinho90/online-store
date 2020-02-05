@@ -1,12 +1,8 @@
 package com.sda.grupa11.onlinestore.model;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity(name="Product")
@@ -41,15 +37,13 @@ public class Product {
     @Column(name = "units_in_stock")
     private int unitsInStock;
 
-    @Column(name = "date_created")
+    /*@Column(name = "date_created")
     @CreationTimestamp
     private Date dateCreated;
 
     @Column(name = "last_updated")
     @UpdateTimestamp
-    private Date lastUpdated;
-
-
+    private Date lastUpdated;*/
 
     public Long getId() {
         return id;
@@ -108,22 +102,6 @@ public class Product {
         this.unitsInStock = unitsInStock;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public Date getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
     @Override
     public String toString() {
         return "Product{" +
@@ -134,8 +112,6 @@ public class Product {
                 ", stock=" + stock +
                 ", pictureURL='" + pictureURL + '\'' +
                 ", unitsInStock=" + unitsInStock +
-                ", dateCreated=" + dateCreated +
-                ", lastUpdated=" + lastUpdated +
                 '}';
     }
 
