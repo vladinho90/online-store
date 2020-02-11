@@ -37,7 +37,7 @@ public class OrdersService {
         return ordersMapper.toDto(savedOrders);
     }
 
-    public OrdersResponse update(OrdersRequest ordersRequest, Long id) {
+    public OrdersResponse update(Long id, OrdersRequest ordersRequest) {
         Orders orders = ordersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("orders not found"));
 
@@ -48,7 +48,7 @@ public class OrdersService {
         return ordersMapper.toDto(savedOrders);
     }
 
-    private void updateFields(Orders orders, OrdersRequest ordersRequest) {
+    public void updateFields(Orders orders, OrdersRequest ordersRequest) {
         orders.setUser(ordersRequest.getUser());
         orders.setDeliveryAddress(ordersRequest.getDeliveryAddress());
         orders.setTotalPrice(ordersRequest.getTotalPrice());
@@ -56,8 +56,7 @@ public class OrdersService {
         orders.setOrderLineList(ordersRequest.getOrderLineList());
     }
 
-    private String deleteById(Long id) {
+    public void deleteById(Long id) {
         ordersRepository.deleteById(id);
-        return "orders deleted successfully";
     }
 }

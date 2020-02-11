@@ -30,6 +30,10 @@ public class ProductService {
         List<Product> products = productRepository.findAll();
         return productMapper.toDto(products);
     }
+    public List<ProductResponse> findByCategory(String category){
+        List<Product> products = productRepository.findByCategory(category);
+        return productMapper.toDto(products);
+    }
 
     public ProductResponse save (ProductRequest productRequest){
         Product product = productMapper.toEntity(productRequest);
@@ -57,8 +61,7 @@ public class ProductService {
         product.setPictureURL(productRequest.getPictureURL());
     }
 
-    public String deleteById(Long id){
+    public void deleteById(Long id){
         productRepository.deleteById(id);
-        return "product deleted successfully";
     }
 }

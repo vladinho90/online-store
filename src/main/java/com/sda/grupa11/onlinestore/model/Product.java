@@ -10,12 +10,13 @@ import java.util.Objects;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long id;
 
     @Column(name = "category")
     @NotNull
+    @Enumerated (EnumType.STRING)
     private Category category;
 
     @Column(name = "title")

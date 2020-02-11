@@ -10,7 +10,7 @@ import java.util.Objects;
 public class OrderLine {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_line_id")
     private Long id;
 

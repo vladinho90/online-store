@@ -6,12 +6,12 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
+@Entity(name="Orders")
 @Table(name="orders")
 public class Orders {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
