@@ -4,5 +4,6 @@ public enum Category {
 
     CLOTHES,
     SHOES,
-    ACCESSORIES
+    ACCESSORIES,
+    BOOKS
 }
