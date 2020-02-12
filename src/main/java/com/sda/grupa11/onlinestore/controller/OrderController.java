@@ -9,8 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
-
+@RestController
 @RequestMapping("/order")
 public class OrderController {
 
@@ -27,14 +28,15 @@ public class OrderController {
         return new ResponseEntity<>(ordersService.save(request), HttpStatus.CREATED);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<OrdersResponse> getProductsById(@RequestParam(name = "id") Long id){
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrdersResponse> getOrderById(@RequestParam(name = "orderId") Long id){
         OrdersResponse orders= ordersService.findById(id);
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable(name = "id") Long id) {
+    @DeleteMapping("/{orderId}")
+    public ResponseEntity<String> delete(@PathVariable(name = "orderId") Long id, Principal principal) {
+        principal.getName();
         ordersService.deleteById(id);
         return new ResponseEntity<>("order deleted", HttpStatus.OK);
     }

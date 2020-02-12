@@ -32,7 +32,10 @@ public class OrderLine {
     @JoinColumn(name="order_id")
     private Orders orders;
 
-    public OrderLine(){}
+    public OrderLine(
+    ){}
+
+
 
     public Long getId() {
         return id;

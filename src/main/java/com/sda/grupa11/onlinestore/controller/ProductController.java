@@ -8,11 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/protucts")
+@RequestMapping("/protuct")
 public class ProductController {
+
 
     @Autowired
     private ProductService productService;
@@ -26,22 +28,25 @@ public class ProductController {
     public ResponseEntity<List<ProductResponse>> findAllProducts() {
         return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
     }
-
-    @GetMapping("/search")
-    public ResponseEntity<List<ProductResponse>> getProductsByCategory(@RequestParam(name = "category") String category){
-        List<ProductResponse> products= productService.findByCategory(category);
-        return new ResponseEntity<>(products, HttpStatus.OK);
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductResponse> getOrderById(@RequestParam(name = "productId") Long id){
+        ProductResponse product= productService.findById(id);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
+
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<String> delete(@PathVariable(name = "id") Long id, Principal principal) {
+        principal.getName();
         productService.deleteById(id);
         return new ResponseEntity<>("product deleted", HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductResponse> update(@PathVariable(name = "id") Long id,
-                                               @RequestBody ProductRequest request) {
+                                               @RequestBody ProductRequest request, Principal principal) {
+        principal.getName();
         ProductResponse response = productService.update(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

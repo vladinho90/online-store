@@ -6,8 +6,7 @@ import com.sda.grupa11.onlinestore.dto.orders.OrdersRequest;
 import com.sda.grupa11.onlinestore.dto.orders.OrdersResponse;
 import com.sda.grupa11.onlinestore.model.Orders;
 import com.sda.grupa11.onlinestore.repository.OrdersRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +14,16 @@ import java.util.List;
 @Service
 public class OrdersService {
 
-    private final static Logger log = LoggerFactory.getLogger(OrdersService.class);
+    @Autowired
     private OrdersRepository ordersRepository;
     private OrdersMapper ordersMapper;
     private ObjectMapper jacksonObjectMapper;
+
+    //nu stiu daca e bine
+
+
+
+    //pana aici
 
     public OrdersResponse findById(Long id) {
         Orders orders = ordersRepository.findById(id)
