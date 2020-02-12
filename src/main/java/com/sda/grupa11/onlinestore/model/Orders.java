@@ -39,6 +39,7 @@ public class Orders {
 
     public Orders(){}
 
+
     public Long getId() {
         return id;
     }
@@ -111,5 +112,11 @@ public class Orders {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public void createOrderLine()
+    {
+        OrderLine orderLine=new OrderLine();
+        orderLine.setOrders(this);
     }
 }

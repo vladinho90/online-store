@@ -4,10 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sda.grupa11.onlinestore.dto.product.ProductMapper;
 import com.sda.grupa11.onlinestore.dto.product.ProductRequest;
 import com.sda.grupa11.onlinestore.dto.product.ProductResponse;
+import com.sda.grupa11.onlinestore.model.Category;
 import com.sda.grupa11.onlinestore.model.Product;
 import com.sda.grupa11.onlinestore.repository.ProductRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private final static Logger log = LoggerFactory.getLogger(ProductService.class);
+
     private ProductRepository productRepository;
     private ProductMapper productMapper;
     private ObjectMapper jacksonObjectMapper;
@@ -30,7 +29,7 @@ public class ProductService {
         List<Product> products = productRepository.findAll();
         return productMapper.toDto(products);
     }
-    public List<ProductResponse> findByCategory(String category){
+    public List<ProductResponse> findAllByCategory(Category category){
         List<Product> products = productRepository.findByCategory(category);
         return productMapper.toDto(products);
     }
@@ -44,11 +43,8 @@ public class ProductService {
     public ProductResponse update(Long id, ProductRequest productRequest){
         Product product = productRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("product not found"));
-
         updateFields(product, productRequest);
-
         Product savedProduct = productRepository.save(product);
-
         return productMapper.toDto(savedProduct);
     }
 
