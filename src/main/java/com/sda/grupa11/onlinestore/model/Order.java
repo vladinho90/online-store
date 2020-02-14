@@ -1,23 +1,26 @@
 package com.sda.grupa11.onlinestore.model;
 
+
+import com.sda.grupa11.onlinestore.model.enums.Status;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
-@Entity(name="Orders")
-@Table(name="orders")
-public class Orders {
+@Entity(name = "Orders")
+@Table(name = "orders")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "order_id")
     private Long id;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "delivery_address")
@@ -31,14 +34,15 @@ public class Orders {
 
     @Column(name = "status")
     @NotNull
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orders", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderLine> orderLineList;
 
-    public Orders(){}
-
+    public Order() {
+    }
 
     public Long getId() {
         return id;
@@ -64,23 +68,6 @@ public class Orders {
         this.deliveryAddress = deliveryAddress;
     }
 
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public List<OrderLine> getOrderLineList() {
-        return orderLineList;
-    }
-
-    public void setOrderLineList(List<OrderLine> orderLine) {
-        this.orderLineList = orderLine;
-    }
-
     public BigDecimal getTotalPrice() {
         return totalPrice;
     }
@@ -89,24 +76,28 @@ public class Orders {
         this.totalPrice = totalPrice;
     }
 
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "id=" + id +
-                ", user=" + user +
-                ", deliveryAddress=" + deliveryAddress +
-                ", totalPrice=" + totalPrice +
-                ", status='" + status + '\'' +
-                ", orderLine=" + orderLineList +
-                '}';
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public List<OrderLine> getOrderLineList() {
+        return orderLineList;
+    }
+
+    public void setOrderLineList(List<OrderLine> orderLineList) {
+        this.orderLineList = orderLineList;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Orders orders = (Orders) o;
-        return id.equals(orders.id);
+        Order order = (Order) o;
+        return id.equals(order.id);
     }
 
     @Override
@@ -114,9 +105,17 @@ public class Orders {
         return Objects.hash(id);
     }
 
-    public void createOrderLine()
-    {
-        OrderLine orderLine=new OrderLine();
-        orderLine.setOrders(this);
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user=" + user +
+                ", deliveryAddress=" + deliveryAddress +
+                ", totalPrice=" + totalPrice +
+                ", status='" + status + '\'' +
+                ", orderLineList=" + orderLineList +
+                '}';
     }
 }
+
+

@@ -1,4 +1,4 @@
-package com.sda.grupa11.onlinestore.model;
+package com.sda.grupa11.onlinestore.model.enums;
 
 public enum Category {
 

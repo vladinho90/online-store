@@ -1,6 +1,7 @@
 package com.sda.grupa11.onlinestore.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 

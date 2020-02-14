@@ -1,12 +1,15 @@
 package com.sda.grupa11.onlinestore.model;
 
+
+import com.sda.grupa11.onlinestore.model.enums.Category;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity(name="Product")
-@Table(name="product")
+@Table(name="products")
 public class Product {
 
     @Id
@@ -16,7 +19,7 @@ public class Product {
 
     @Column(name = "category")
     @NotNull
-    @Enumerated (EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     @Column(name = "title")
@@ -38,13 +41,8 @@ public class Product {
     @Column(name = "units_in_stock")
     private int unitsInStock;
 
-    /*@Column(name = "date_created")
-    @CreationTimestamp
-    private Date dateCreated;
-
-    @Column(name = "last_updated")
-    @UpdateTimestamp
-    private Date lastUpdated;*/
+    public Product() {
+    }
 
     public Long getId() {
         return id;
@@ -70,6 +68,13 @@ public class Product {
         this.title = title;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
     public boolean isStock() {
         return stock;
@@ -87,33 +92,12 @@ public class Product {
         this.pictureURL = pictureURL;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public int getUnitsInStock() {
         return unitsInStock;
     }
 
     public void setUnitsInStock(int unitsInStock) {
         this.unitsInStock = unitsInStock;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", category=" + category +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", stock=" + stock +
-                ", pictureURL='" + pictureURL + '\'' +
-                ", unitsInStock=" + unitsInStock +
-                '}';
     }
 
     @Override

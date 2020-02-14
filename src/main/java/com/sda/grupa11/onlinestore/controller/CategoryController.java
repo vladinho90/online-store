@@ -1,8 +1,8 @@
 package com.sda.grupa11.onlinestore.controller;
 
-import com.sda.grupa11.onlinestore.dto.product.ProductResponse;
-import com.sda.grupa11.onlinestore.model.Category;
-import com.sda.grupa11.onlinestore.service.ProductService;
+import com.sda.grupa11.onlinestore.model.Product;
+import com.sda.grupa11.onlinestore.model.enums.Category;
+import com.sda.grupa11.onlinestore.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,14 @@ import java.util.List;
 public class CategoryController {
 
 
+
     @Autowired
-    private ProductService productService;
+    private IProductService productService;
 
     @GetMapping("/search")
-    public ResponseEntity<List<ProductResponse>> getProductsByCategory(@RequestParam(name = "category") Category category){
+    public ResponseEntity<List<Product>> getProductsByCategory(@RequestParam(name = "category") Category category){
 
-        List<ProductResponse> products= productService.findAllByCategory(category);
+        List<Product> products= productService.findAllProductByCategory(category);
 
         return new ResponseEntity<>(products, HttpStatus.OK);
     }

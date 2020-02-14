@@ -1,12 +1,14 @@
 package com.sda.grupa11.onlinestore.model;
 
+import com.sda.grupa11.onlinestore.model.enums.Role;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 
-@Entity(name="User")
-@Table(name="user")
+@Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -33,11 +35,10 @@ public class User {
 
     @NotNull
     @OneToMany(mappedBy = "user")
-    private List<Orders> ordersList;
+    private List<Order> ordersList;
 
-    //TODO: CATEGORY ENUM
-
-    public User(){}
+    public User() {
+    }
 
     public Long getId() {
         return id;
@@ -79,12 +80,25 @@ public class User {
         this.role = role;
     }
 
-    public List<Orders> getOrdersList() {
+    public List<Order> getOrdersList() {
         return ordersList;
     }
 
-    public void setOrdersList(List<Orders> ordersList) {
+    public void setOrdersList(List<Order> ordersList) {
         this.ordersList = ordersList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
@@ -98,17 +112,5 @@ public class User {
                 ", ordersList=" + ordersList +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return getId().equals(user.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
 }
+
