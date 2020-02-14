@@ -2,6 +2,7 @@ package com.sda.grupa11.onlinestore.service;
 
 
 import com.sda.grupa11.onlinestore.model.User;
+import com.sda.grupa11.onlinestore.model.enums.Role;
 
 import java.util.List;
 
@@ -13,9 +14,11 @@ public interface IUserService {
 
     User findUserById(Long id);
 
-    void deleteUserById(Long id);
-
     User updateUser(Long id, User user);
 
     User findUserByUsername(String username);
+
+    List<User> findUserByRole(Role role);
+
+    User createUser(User user);
 }

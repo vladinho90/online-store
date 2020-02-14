@@ -5,6 +5,7 @@ import com.sda.grupa11.onlinestore.model.Product;
 import com.sda.grupa11.onlinestore.model.enums.Category;
 import com.sda.grupa11.onlinestore.repository.ProductRepository;
 import com.sda.grupa11.onlinestore.service.IProductService;
+import net.bytebuddy.implementation.bind.annotation.RuntimeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,33 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public List<Product> findAllProductByCategory(Category category) {
         return productRepository.findAllByCategory(category);
+    }
+
+
+    @Override
+    public void increaseStock(Long productId, int quantity) {
+        Product product = findProductById(productId);
+        if (product == null) {
+            throw new RuntimeException("Product with id: " + productId + " not found");
+        }
+        int updateStock = product.getUnitsInStock() - quantity;
+        product.setUnitsInStock(updateStock);
+        updateProduct(productId,product);
+    }
+
+    @Override
+    public void decreaseStock(Long productId, int quantity) {
+        Product product = findProductById(productId);
+        if (product == null) {
+            throw new RuntimeException("Product with id: " + productId + " not found");
+        }
+        int updateStock = product.getUnitsInStock() - quantity;
+        if (updateStock == 0) {
+            product.setStock(false);
+        } else if (updateStock < 0) {
+            throw new RuntimeException("Product not enough");
+        }
+        product.setUnitsInStock(updateStock);
+        updateProduct(productId,product);
     }
 }

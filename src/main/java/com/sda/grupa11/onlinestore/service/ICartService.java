@@ -1,19 +1,22 @@
 package com.sda.grupa11.onlinestore.service;
 
 import com.sda.grupa11.onlinestore.model.Cart;
+import com.sda.grupa11.onlinestore.model.CartItem;
+import com.sda.grupa11.onlinestore.model.User;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface ICartService {
 
-    void saveCart(Cart cart);
+    Cart getCart(User user);
 
-    List<Cart> findAllCarts();
+    void addToCart(CartItem cartItem, User user);
 
-    Cart findCartById(Long id);
+    void deleteCart(Long cartItemId, User user);
 
-    void deleteCartById(Long id);
 
-    Cart updateCart(Long id, Cart Cart);
+
+    //cum transformam cartul in order
 
 }

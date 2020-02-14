@@ -2,6 +2,7 @@ package com.sda.grupa11.onlinestore.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -19,6 +20,7 @@ public class CartItem {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @Min(1)
     @Column(name = "quantity")
     @NotNull
     private int quantity;

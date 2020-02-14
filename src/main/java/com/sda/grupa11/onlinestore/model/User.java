@@ -1,7 +1,7 @@
 package com.sda.grupa11.onlinestore.model;
 
 import com.sda.grupa11.onlinestore.model.enums.Role;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -32,6 +32,10 @@ public class User {
     @NotNull
     @Enumerated(value = EnumType.STRING)
     private Role role;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore // fix bi-directional toString() recursion problem
+    private Cart cart;
 
     @NotNull
     @OneToMany(mappedBy = "user")
@@ -80,6 +84,14 @@ public class User {
         this.role = role;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     public List<Order> getOrdersList() {
         return ordersList;
     }
@@ -109,6 +121,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", address=" + address +
                 ", role=" + role +
+                ", cart=" + cart +
                 ", ordersList=" + ordersList +
                 '}';
     }

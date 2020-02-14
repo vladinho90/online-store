@@ -19,4 +19,8 @@ public interface IProductService {
     Product updateProduct(Long id, Product product);
 
     List<Product> findAllProductByCategory(Category category);
+
+    void increaseStock(Long productId, int quantity);
+
+    void decreaseStock(Long productId, int quantity);
 }
