@@ -1,7 +1,7 @@
 package com.sda.grupa11.onlinestore.dto.user;
 
 import com.sda.grupa11.onlinestore.model.Address;
-import com.sda.grupa11.onlinestore.model.Orders;
+import com.sda.grupa11.onlinestore.model.Order;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class UserRequest {
     private String username;
     private String password;
     private Address address;
-    private List<Orders> ordersList;
+    private List<Order> ordersList;
 
     public String getUsername() {
         return username;
@@ -36,11 +36,11 @@ public class UserRequest {
         this.address = address;
     }
 
-    public List<Orders> getOrdersList() {
+    public List<Order> getOrdersList() {
         return ordersList;
     }
 
-    public void setOrdersList(List<Orders> ordersList) {
+    public void setOrdersList(List<Order> ordersList) {
         this.ordersList = ordersList;
     }
 }

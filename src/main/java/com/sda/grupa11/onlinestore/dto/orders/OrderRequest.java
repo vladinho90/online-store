@@ -3,26 +3,18 @@ package com.sda.grupa11.onlinestore.dto.orders;
 import com.sda.grupa11.onlinestore.model.Address;
 import com.sda.grupa11.onlinestore.model.OrderLine;
 import com.sda.grupa11.onlinestore.model.User;
+import com.sda.grupa11.onlinestore.model.enums.Status;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class OrdersResponse {
+public class OrderRequest {
 
-    private Long id;
     private User user;
     private Address deliveryAddress;
     private BigDecimal totalPrice;
-    private String status;
+    private Status status;
     private List<OrderLine> orderLineList;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public User getUser() {
         return user;
@@ -48,11 +40,11 @@ public class OrdersResponse {
         this.totalPrice = totalPrice;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

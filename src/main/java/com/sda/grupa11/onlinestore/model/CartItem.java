@@ -3,19 +3,18 @@ package com.sda.grupa11.onlinestore.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import java.util.Objects;
 
-@Entity(name="OrderLine")
-@Table(name="order_lines")
-public class OrderLine {
+@Entity(name = "CartItem")
+@Table(name = "cart_items")
+public class CartItem {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_line_id")
+    @Column(name = "cart_item_id")
     private Long id;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
@@ -24,16 +23,13 @@ public class OrderLine {
     @NotNull
     private int quantity;
 
-    @Column(name = "price")
-    @NotNull
-    private BigDecimal price;
-
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name="cart_id")
+    private Cart cart;
 
-    public OrderLine() {
+
+    public CartItem() {
     }
 
     public Long getId() {
@@ -60,30 +56,21 @@ public class OrderLine {
         this.quantity = quantity;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     @Override
     public String toString() {
-        return "OrderLine{" +
+        return "CartItem{" +
                 "id=" + id +
                 ", product=" + product +
                 ", quantity=" + quantity +
-                ", price=" + price +
-                ", order=" + order +
+                ", cart=" + cart +
                 '}';
     }
 
@@ -91,8 +78,8 @@ public class OrderLine {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderLine orderLine = (OrderLine) o;
-        return id.equals(orderLine.id);
+        CartItem cartItem = (CartItem) o;
+        return id.equals(cartItem.id);
     }
 
     @Override

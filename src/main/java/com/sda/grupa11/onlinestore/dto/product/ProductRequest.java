@@ -1,6 +1,7 @@
 package com.sda.grupa11.onlinestore.dto.product;
 
-import com.sda.grupa11.onlinestore.model.Category;
+
+import com.sda.grupa11.onlinestore.model.enums.Category;
 
 import java.math.BigDecimal;
 

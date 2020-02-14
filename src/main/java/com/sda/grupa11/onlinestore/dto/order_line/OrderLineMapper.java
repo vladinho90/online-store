@@ -14,7 +14,7 @@ public class OrderLineMapper {
         dto.setProduct(orderLine.getProduct());
         dto.setQuantity(orderLine.getQuantity());
         dto.setPrice(orderLine.getPrice());
-        dto.setOrders(orderLine.getOrders());
+        dto.setOrder(orderLine.getOrder());
         return dto;
     }
 
@@ -29,7 +29,7 @@ public class OrderLineMapper {
         entity.setProduct(orderLineRequest.getProduct());
         entity.setQuantity(orderLineRequest.getQuantity());
         entity.setPrice(orderLineRequest.getPrice());
-        entity.setOrders(orderLineRequest.getOrders());
+        entity.setOrder(orderLineRequest.getOrder());
         return entity;
     }
 
