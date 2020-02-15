@@ -26,9 +26,6 @@ public class CartServiceImpl implements ICartService {
     @Autowired
     public CartItemRepository cartItemRepository;
 
-
-
-
     @Override
     public Cart getCart(User user) {
         return user.getCart();
@@ -79,6 +76,4 @@ public class CartServiceImpl implements ICartService {
             cartItemRepository.deleteById(cartItem.getId());
         });
     }
-
-
 }
