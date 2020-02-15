@@ -7,11 +7,9 @@ import com.sda.grupa11.onlinestore.model.User;
 import com.sda.grupa11.onlinestore.repository.CartItemRepository;
 import com.sda.grupa11.onlinestore.repository.CartRepository;
 import com.sda.grupa11.onlinestore.service.ICartService;
+import com.sda.grupa11.onlinestore.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -19,7 +17,11 @@ import java.util.Set;
 public class CartServiceImpl implements ICartService {
 
     @Autowired
+    IOrderService orderService;
+
+    @Autowired
     public CartRepository cartRepository;
+
 
     @Autowired
     public CartItemRepository cartItemRepository;
@@ -31,6 +33,23 @@ public class CartServiceImpl implements ICartService {
     public Cart getCart(User user) {
         return user.getCart();
     }
+
+    @Override
+    public void delete(Long cartItemId , User user){
+       Optional<CartItem> cartItem= getCart(user).getCartItemSet()
+               .stream().filter(item-> cartItemId.equals(item.getProduct().getId())).findFirst();
+       cartItem.ifPresent(productInOrder -> {
+           productInOrder.setCart(null);
+           cartRepository.deleteById(productInOrder.getId());
+       });
+    }
+
+
+    @Override
+    public void saveCart(Cart cart) {
+        cartRepository.save(cart);
+    }
+
 
 
     @Override
@@ -60,4 +79,6 @@ public class CartServiceImpl implements ICartService {
             cartItemRepository.deleteById(cartItem.getId());
         });
     }
+
+
 }

@@ -9,14 +9,12 @@ import com.sda.grupa11.onlinestore.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 import java.util.List;
 
-@RestController
-@RequestMapping("/cart")
+//@RestController
+//@RequestMapping("/cart")
 public class CartController {
 
     @Autowired

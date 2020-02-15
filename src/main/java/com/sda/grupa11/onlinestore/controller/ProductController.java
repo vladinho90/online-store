@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
-@RestController
-@RequestMapping("/protuct")
+//@RestController
+//@RequestMapping("/protuct")
 public class ProductController {
 
 
