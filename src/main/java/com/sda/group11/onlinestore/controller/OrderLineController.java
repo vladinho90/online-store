@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import java.util.List;
 
-//@Controller("/orders")
+//@Controller("/order")
 public class OrderLineController {
 
     @Autowired

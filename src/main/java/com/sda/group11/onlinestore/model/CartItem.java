@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity(name = "CartItem")
-@Table(name = "cart_items")
+@Table(name = "cart_item")
 public class CartItem {
 
 

@@ -1,13 +1,11 @@
-package com.sda.group11.onlinestore.dto.orders;
+package com.sda.group11.onlinestore.dto.order;
 
 import com.sda.group11.onlinestore.dto.order_line.OrderLineMapper;
 import com.sda.group11.onlinestore.dto.order_line.OrderLineResponse;
 import com.sda.group11.onlinestore.model.Order;
-import com.sda.group11.onlinestore.model.OrderLine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 @Component
