@@ -1,10 +1,8 @@
 package com.sda.group11.onlinestore.service;
 
-import com.sda.group11.onlinestore.model.Cart;
-import com.sda.group11.onlinestore.model.CartItem;
-import com.sda.group11.onlinestore.model.OrderLine;
-import com.sda.group11.onlinestore.model.User;
+import com.sda.group11.onlinestore.model.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ICartService {
@@ -17,11 +15,13 @@ public interface ICartService {
 
     void delete(Long cartItemId, User user);
 
-    public void saveCart(Cart cart);
+    void saveCart(Cart cart);
 
-    public List<OrderLine> checkout(Long cartId);
+    Order checkout(Long cartId);
 
     void deleteCartById(Long id);
 
     Cart findCartById(Long id);
+
+    BigDecimal getPricePerOrderLine (CartItem cartItem);
 }

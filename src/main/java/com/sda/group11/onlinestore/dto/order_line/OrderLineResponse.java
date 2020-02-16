@@ -1,15 +1,12 @@
 package com.sda.group11.onlinestore.dto.order_line;
 
-import com.sda.group11.onlinestore.dto.orders.OrderResponse;
-import com.sda.group11.onlinestore.model.Order;
-import com.sda.group11.onlinestore.model.Product;
-
+import com.sda.group11.onlinestore.dto.product.ProductResponse;
 import java.math.BigDecimal;
 
 public class OrderLineResponse {
 
     private Long id;
-    private Product product;
+    private ProductResponse productResponse;
     private int quantity;
     private BigDecimal price;
 
@@ -21,12 +18,12 @@ public class OrderLineResponse {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public ProductResponse getProductResponse() {
+        return productResponse;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductResponse(ProductResponse productResponse) {
+        this.productResponse = productResponse;
     }
 
     public int getQuantity() {

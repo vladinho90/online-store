@@ -1,16 +1,12 @@
 package com.sda.group11.onlinestore.dto.user;
 
 import com.sda.group11.onlinestore.model.Address;
-import com.sda.group11.onlinestore.model.Order;
-
-import java.util.List;
 
 public class UserRequest {
 
     private String username;
     private String password;
     private Address address;
-    private List<Order> ordersList;
 
     public String getUsername() {
         return username;
@@ -34,13 +30,5 @@ public class UserRequest {
 
     public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public List<Order> getOrdersList() {
-        return ordersList;
-    }
-
-    public void setOrdersList(List<Order> ordersList) {
-        this.ordersList = ordersList;
     }
 }

@@ -1,6 +1,9 @@
 package com.sda.group11.onlinestore.dto.order_line;
 
+import com.sda.group11.onlinestore.dto.product.ProductMapper;
+import com.sda.group11.onlinestore.dto.product.ProductResponse;
 import com.sda.group11.onlinestore.model.OrderLine;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,10 +13,14 @@ import java.util.stream.Collectors;
 @Component
 public class OrderLineMapper {
 
+    @Autowired
+    public ProductMapper productMapper;
+
     public OrderLineResponse toDto(OrderLine orderLine) {
         OrderLineResponse dto = new OrderLineResponse();
         dto.setId(orderLine.getId());
-        dto.setProduct(orderLine.getProduct());
+        ProductResponse productResponse = productMapper.toDto(orderLine.getProduct());
+        dto.setProductResponse(productResponse);
         dto.setQuantity(orderLine.getQuantity());
         dto.setPrice(orderLine.getPrice());
         return dto;
@@ -23,21 +30,5 @@ public class OrderLineMapper {
         return orderLines.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
-    }
-
-    public OrderLine toEntity(OrderLineRequest orderLineRequest) {
-        OrderLine entity = new OrderLine();
-        entity.setProduct(orderLineRequest.getProduct());
-        entity.setQuantity(orderLineRequest.getQuantity());
-        entity.setPrice(orderLineRequest.getPrice());
-        entity.setOrder(orderLineRequest.getOrder());
-        return entity;
-    }
-
-    public List<OrderLine> toEntity(List<OrderLineRequest> orderLineRequestList) {
-        List<OrderLine> orderLines = new ArrayList<>();
-        for (OrderLineRequest orderLineRequest : orderLineRequestList)
-            orderLines.add(toEntity(orderLineRequest));
-        return orderLines;
     }
 }
