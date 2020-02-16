@@ -2,7 +2,7 @@ package com.sda.group11.onlinestore.model;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,11 +15,11 @@ public class Cart {
     @Column(name = "cart_id")
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cart", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CartItem> cartItemSet;
 
     public Cart() {
@@ -47,6 +47,10 @@ public class Cart {
 
     public void setCartItemSet(Set<CartItem> cartItemSet) {
         this.cartItemSet = cartItemSet;
+    }
+
+    public void deleteAllItems() {
+        this.cartItemSet.forEach(cartItemSet::remove);
     }
 
     @Override
