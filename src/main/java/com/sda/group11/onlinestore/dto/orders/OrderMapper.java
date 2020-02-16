@@ -1,12 +1,20 @@
 package com.sda.group11.onlinestore.dto.orders;
 
+import com.sda.group11.onlinestore.dto.order_line.OrderLineMapper;
+import com.sda.group11.onlinestore.dto.order_line.OrderLineResponse;
 import com.sda.group11.onlinestore.model.Order;
+import com.sda.group11.onlinestore.model.OrderLine;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class OrderMapper {
+
+    @Autowired
+    public OrderLineMapper orderLineMapper;
 
     public OrderResponse toDto(Order order) {
         OrderResponse dto = new OrderResponse();
@@ -15,7 +23,12 @@ public class OrderMapper {
         dto.setDeliveryAddress(order.getDeliveryAddress());
         dto.setTotalPrice(order.getTotalPrice());
         dto.setStatus(order.getStatus());
-        dto.setOrderLineList(order.getOrderLineList());
+
+        List<OrderLineResponse> orderLineResponses = order.getOrderLineList()
+                .stream()
+                .map(orderLineMapper::toDto)
+                .collect(Collectors.toList());
+        dto.setOrderLineResponsesList(orderLineResponses);
         return dto;
     }
 
@@ -23,22 +36,5 @@ public class OrderMapper {
         return orderList.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
-    }
-
-    public Order toEntity(OrderRequest orderRequest) {
-        Order entity = new Order();
-        entity.setUser(orderRequest.getUser());
-        entity.setDeliveryAddress(orderRequest.getDeliveryAddress());
-        entity.setTotalPrice(orderRequest.getTotalPrice());
-        entity.setStatus(orderRequest.getStatus());
-        entity.setOrderLineList(orderRequest.getOrderLineList());
-        return entity;
-    }
-
-    public List<Order> toEntity(List<OrderRequest> orderRequestList){
-        List<Order> ordersList = new ArrayList<>();
-        for (OrderRequest orderRequest : orderRequestList)
-            ordersList.add(toEntity(orderRequest));
-        return ordersList;
     }
 }
