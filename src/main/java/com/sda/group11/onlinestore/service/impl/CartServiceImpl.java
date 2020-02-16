@@ -100,7 +100,7 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public List<OrderLine> checkout(Long cartId) {
+    public Order checkout(Long cartId) {
         Order order = new Order();
         order.setStatus(Status.NEW);
 
@@ -111,7 +111,7 @@ public class CartServiceImpl implements ICartService {
                     OrderLine orderLine = new OrderLine();
                     orderLine.setProduct(cartItem.getProduct());
                     orderLine.setOrder(order);
-                    orderLine.setPrice(cartItem.getProduct().getPrice());
+                    orderLine.setPrice(getPricePerOrderLine(cartItem));
                     orderLine.setQuantity(cartItem.getQuantity());
 
                     return orderLine;
@@ -126,6 +126,7 @@ public class CartServiceImpl implements ICartService {
                 .map(OrderLine::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
+
         order.setTotalPrice(totalPrice);
 
         order.setOrderLineList(orderLineList);
@@ -133,6 +134,13 @@ public class CartServiceImpl implements ICartService {
 
         cart.deleteAllItems();
 
-        return orderLineList;
+        return order;
+    }
+
+
+    @Override
+    public BigDecimal getPricePerOrderLine(CartItem cartItem) {
+        BigDecimal totalPrice = cartItem.getProduct().getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity()));
+        return totalPrice;
     }
 }

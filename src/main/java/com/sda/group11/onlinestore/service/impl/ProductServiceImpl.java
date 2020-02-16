@@ -60,9 +60,10 @@ public class ProductServiceImpl implements IProductService {
         if (product == null) {
             throw new RuntimeException("Product with id: " + productId + " not found");
         }
-        int updateStock = product.getUnitsInStock() - quantity;
+        int updateStock = product.getUnitsInStock() + quantity;
         product.setUnitsInStock(updateStock);
         updateProduct(productId,product);
+        productRepository.save(product);
     }
 
     @Override
@@ -79,5 +80,6 @@ public class ProductServiceImpl implements IProductService {
         }
         product.setUnitsInStock(updateStock);
         updateProduct(productId,product);
+        productRepository.save(product);
     }
 }

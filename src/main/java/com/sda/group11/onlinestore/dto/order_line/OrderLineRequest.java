@@ -1,6 +1,5 @@
 package com.sda.group11.onlinestore.dto.order_line;
 
-import com.sda.group11.onlinestore.model.Order;
 import com.sda.group11.onlinestore.model.Product;
 
 import java.math.BigDecimal;
@@ -10,7 +9,6 @@ public class OrderLineRequest {
     private Product product;
     private int quantity;
     private BigDecimal price;
-    private Order order;
 
     public Product getProduct() {
         return product;
@@ -36,11 +34,5 @@ public class OrderLineRequest {
         this.price = price;
     }
 
-    public Order getOrder() {
-        return order;
-    }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }

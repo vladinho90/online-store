@@ -1,5 +1,6 @@
 package com.sda.group11.onlinestore.dto.orders;
 
+import com.sda.group11.onlinestore.dto.order_line.OrderLineResponse;
 import com.sda.group11.onlinestore.model.enums.Status;
 import com.sda.group11.onlinestore.model.Address;
 import com.sda.group11.onlinestore.model.OrderLine;
@@ -15,7 +16,7 @@ public class OrderResponse {
     private Address deliveryAddress;
     private BigDecimal totalPrice;
     private Status status;
-    private List<OrderLine> orderLineList;
+    private List<OrderLineResponse> orderLineResponsesList;
 
     public Long getId() {
         return id;
@@ -57,11 +58,11 @@ public class OrderResponse {
         this.status = status;
     }
 
-    public List<OrderLine> getOrderLineList() {
-        return orderLineList;
+    public List<OrderLineResponse> getOrderLineResponsesList() {
+        return orderLineResponsesList;
     }
 
-    public void setOrderLineList(List<OrderLine> orderLineList) {
-        this.orderLineList = orderLineList;
+    public void setOrderLineResponsesList(List<OrderLineResponse> orderLineResponsesList) {
+        this.orderLineResponsesList = orderLineResponsesList;
     }
 }

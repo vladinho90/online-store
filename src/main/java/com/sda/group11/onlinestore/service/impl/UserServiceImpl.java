@@ -62,7 +62,7 @@ public class UserServiceImpl implements IUserService {
         userUpdate.setPassword(user.getPassword());
         userUpdate.setRole(user.getRole());
         userUpdate.setUsername(user.getUsername());
-        return null;
+        return userRepository.save(userUpdate);
     }
 
     @Override

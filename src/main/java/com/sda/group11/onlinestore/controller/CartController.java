@@ -2,6 +2,9 @@ package com.sda.group11.onlinestore.controller;
 
 
 import com.sda.group11.onlinestore.dto.order_line.OrderLineMapper;
+import com.sda.group11.onlinestore.dto.orders.OrderMapper;
+import com.sda.group11.onlinestore.dto.orders.OrderResponse;
+import com.sda.group11.onlinestore.model.Order;
 import com.sda.group11.onlinestore.model.OrderLine;
 import com.sda.group11.onlinestore.repository.OrderLineRepository;
 import com.sda.group11.onlinestore.service.IOrderLineService;
@@ -43,6 +46,9 @@ public class CartController {
     @Autowired
     public CartServiceImpl cartService;
 
+    @Autowired
+    public OrderMapper orderMapper;
+
 
     //noi trebuie sa obtinem toate orderlineurile
     //orderline ul e in functie de user si order
@@ -54,10 +60,10 @@ public class CartController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<OrderLineResponse>> getCart(@PathVariable (name = "id") Long cartId){
-        List<OrderLine> orderLineList = cartService.checkout(cartId);
+    public ResponseEntity<OrderResponse> getCart(@PathVariable (name = "id") Long cartId){
+        Order order = cartService.checkout(cartId);
 
-        List<OrderLineResponse> orderLineResponses = orderLineMapper.toDto(orderLineList);
-        return new ResponseEntity<>(orderLineResponses, HttpStatus.OK);
+        OrderResponse orderResponses = orderMapper.toDto(order);
+        return new ResponseEntity<>(orderResponses, HttpStatus.OK);
     }
 }

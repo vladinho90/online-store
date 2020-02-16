@@ -50,7 +50,11 @@ public class Cart {
     }
 
     public void deleteAllItems() {
-        this.cartItemSet.forEach(cartItemSet::remove);
+        cartItemSet.clear();
+//        Set<CartItem> cartItems = cartItemSet;
+//        for (CartItem cartItem : this.cartItemSet) {
+//            cartItems.remove(cartItem);
+//        }
     }
 
     @Override
