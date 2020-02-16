@@ -1,6 +1,5 @@
 package com.sda.group11.onlinestore.dto.user;
 
-import com.sda.group11.onlinestore.dto.orders.OrderResponse;
 import com.sda.group11.onlinestore.model.Address;
 
 public class UserResponse {

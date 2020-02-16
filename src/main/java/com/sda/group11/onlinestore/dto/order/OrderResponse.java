@@ -1,9 +1,8 @@
-package com.sda.group11.onlinestore.dto.orders;
+package com.sda.group11.onlinestore.dto.order;
 
 import com.sda.group11.onlinestore.dto.order_line.OrderLineResponse;
 import com.sda.group11.onlinestore.model.enums.Status;
 import com.sda.group11.onlinestore.model.Address;
-import com.sda.group11.onlinestore.model.OrderLine;
 import com.sda.group11.onlinestore.model.User;
 
 import java.math.BigDecimal;
