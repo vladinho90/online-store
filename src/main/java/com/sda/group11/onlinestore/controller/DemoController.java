@@ -15,22 +15,17 @@ import java.util.List;
 @RequestMapping("/products")
 public class DemoController {
 
-
-
     @Autowired
     public IProductService productService;
-
 
     @GetMapping("")
     public String listProducts(Model theModel){
 
-        //get producs from db
+        //get products from db
         List<Product> productList= productService.findAllProducts();
 
         //add to the spring model
         theModel.addAttribute("products", productList);
         return "index";
     }
-
-
 }

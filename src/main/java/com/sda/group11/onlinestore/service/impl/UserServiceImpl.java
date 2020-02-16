@@ -2,11 +2,8 @@ package com.sda.group11.onlinestore.service.impl;
 
 
 import com.sda.group11.onlinestore.model.Cart;
-import com.sda.group11.onlinestore.model.Order;
-import com.sda.group11.onlinestore.model.OrderLine;
 import com.sda.group11.onlinestore.model.User;
 import com.sda.group11.onlinestore.model.enums.Role;
-import com.sda.group11.onlinestore.model.enums.Status;
 import com.sda.group11.onlinestore.repository.CartItemRepository;
 import com.sda.group11.onlinestore.repository.CartRepository;
 import com.sda.group11.onlinestore.repository.OrderRepository;
@@ -15,9 +12,6 @@ import com.sda.group11.onlinestore.service.IProductService;
 import com.sda.group11.onlinestore.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -83,6 +77,11 @@ public class UserServiceImpl implements IUserService {
         Cart newCart = cartRepository.save(new Cart());
         newCart.setUser(newUser);
         return userRepository.save(newUser);
+    }
+
+    @Override
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
     }
 
 }

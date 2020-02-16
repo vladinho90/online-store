@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-
     @Autowired
     public IProductService productService;
 //
@@ -31,7 +30,7 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<Product> getOrderById(@PathVariable(name = "productId") Long id){
+    public ResponseEntity<Product> findProductById(@PathVariable(name = "productId") Long id){
         Product product= productService.findProductById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
@@ -50,5 +49,4 @@ public class ProductController {
         Product response = productService.updateProduct(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
 }

@@ -26,6 +26,4 @@ public class OrderLineController {
         User user= IUserService.findUserByUsername(principal.getName());
         return ResponseEntity.ok(IOrderService.findAllOrdersByUser(user));
     }
-
-
 }
