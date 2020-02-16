@@ -5,7 +5,6 @@ import com.sda.grupa11.onlinestore.model.Product;
 import com.sda.grupa11.onlinestore.model.enums.Category;
 import com.sda.grupa11.onlinestore.repository.ProductRepository;
 import com.sda.grupa11.onlinestore.service.IProductService;
-import net.bytebuddy.implementation.bind.annotation.RuntimeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

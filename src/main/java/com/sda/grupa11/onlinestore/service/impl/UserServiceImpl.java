@@ -1,7 +1,10 @@
 package com.sda.grupa11.onlinestore.service.impl;
 
 
-import com.sda.grupa11.onlinestore.model.*;
+import com.sda.grupa11.onlinestore.model.Cart;
+import com.sda.grupa11.onlinestore.model.Order;
+import com.sda.grupa11.onlinestore.model.OrderLine;
+import com.sda.grupa11.onlinestore.model.User;
 import com.sda.grupa11.onlinestore.model.enums.Role;
 import com.sda.grupa11.onlinestore.model.enums.Status;
 import com.sda.grupa11.onlinestore.repository.CartItemRepository;
@@ -64,7 +67,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User findUserByUsername(String username) {
-       return userRepository.findUserByUsername(username);
+        return userRepository.findUserByUsername(username);
     }
 
     @Override
@@ -82,27 +85,30 @@ public class UserServiceImpl implements IUserService {
         return userRepository.save(newUser);
     }
 
-    public List<OrderLine>  checkout(User user){
+    public List<OrderLine> checkout(User user) {
         //Create an order
-        Order order= new Order();
-        BigDecimal orderPrice= BigDecimal.valueOf(0);
+        Order order = new Order();
+        BigDecimal orderPrice = BigDecimal.valueOf(0);
         order.setStatus(Status.NEW);
-        List<OrderLine> orderLineList=new ArrayList<>();
+        List<OrderLine> orderLineList = new ArrayList<>();
         user.getCart().getCartItemSet().forEach(cartItem -> {
-                OrderLine orderLine=new OrderLine();
-                orderLine.setProduct(cartItem.getProduct());
-                orderLine.setOrder(order);
-                orderLine.setPrice(cartItem.getProduct().getPrice());
-                orderLine.setQuantity(cartItem.getQuantity());
-                cartItem.setCart(null);
+            OrderLine orderLine = new OrderLine();
+            orderLine.setProduct(cartItem.getProduct());
+            orderLine.setOrder(order);
+            orderLine.setPrice(cartItem.getProduct().getPrice());
+            orderLine.setQuantity(cartItem.getQuantity());
+            cartItem.setCart(null);
 
-                //trebuie sa facem o metoda care sa scada unitatile din stoc
-                productService.decreaseStock(cartItem.getProduct().getId(),cartItem.getQuantity());
-                cartItemRepository.save(cartItem);
-                orderLineList.add(orderLine);
-                orderPrice.add(orderLine.getPrice());
+            //trebuie sa facem o metoda care sa scada unitatile din stoc
+            productService.decreaseStock(cartItem.getProduct().getId(), cartItem.getQuantity());
+            // cartItemRepository.save(cartItem);
+            orderLineList.add(orderLine);
+            orderPrice.add(orderLine.getPrice());
+
 
         });
+
+        order.setTotalPrice(orderPrice);
         return orderLineList;
     }
 }
