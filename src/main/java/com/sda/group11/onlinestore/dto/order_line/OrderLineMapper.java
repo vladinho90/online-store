@@ -16,7 +16,6 @@ public class OrderLineMapper {
         dto.setProduct(orderLine.getProduct());
         dto.setQuantity(orderLine.getQuantity());
         dto.setPrice(orderLine.getPrice());
-        dto.setOrder(orderLine.getOrder());
         return dto;
     }
 

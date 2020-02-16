@@ -34,7 +34,6 @@ public class User {
     private Role role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore // fix bi-directional toString() recursion problem
     private Cart cart;
 
     @OneToMany(mappedBy = "user")

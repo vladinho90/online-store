@@ -1,5 +1,6 @@
 package com.sda.group11.onlinestore.dto.order_line;
 
+import com.sda.group11.onlinestore.dto.orders.OrderResponse;
 import com.sda.group11.onlinestore.model.Order;
 import com.sda.group11.onlinestore.model.Product;
 
@@ -11,7 +12,6 @@ public class OrderLineResponse {
     private Product product;
     private int quantity;
     private BigDecimal price;
-    private Order order;
 
     public Long getId() {
         return id;
@@ -43,13 +43,5 @@ public class OrderLineResponse {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 }
