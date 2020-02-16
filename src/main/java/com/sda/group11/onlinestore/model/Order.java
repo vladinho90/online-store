@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
-@Entity(name = "Orders")
-@Table(name = "order")
+@Entity(name = "Order")
+@Table(name = "orders")
 public class Order {
 
     @Id
