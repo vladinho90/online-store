@@ -2,18 +2,15 @@ package com.sda.group11.onlinestore.controller;
 
 
 import com.sda.group11.onlinestore.dto.order_line.OrderLineMapper;
-import com.sda.group11.onlinestore.dto.orders.OrderMapper;
-import com.sda.group11.onlinestore.dto.orders.OrderResponse;
+import com.sda.group11.onlinestore.dto.order.OrderMapper;
+import com.sda.group11.onlinestore.dto.order.OrderResponse;
 import com.sda.group11.onlinestore.model.Order;
-import com.sda.group11.onlinestore.model.OrderLine;
 import com.sda.group11.onlinestore.repository.OrderLineRepository;
 import com.sda.group11.onlinestore.service.IOrderLineService;
 import com.sda.group11.onlinestore.service.IUserService;
 import com.sda.group11.onlinestore.dto.order_line.OrderLineResponse;
 import com.sda.group11.onlinestore.model.User;
 import com.sda.group11.onlinestore.service.impl.CartServiceImpl;
-import com.sda.group11.onlinestore.service.impl.OrderLineServiceImpl;
-import com.sda.group11.onlinestore.service.impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

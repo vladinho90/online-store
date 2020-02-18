@@ -1,6 +1,5 @@
 package com.sda.group11.onlinestore.service;
 
-
 import com.sda.group11.onlinestore.model.enums.Role;
 import com.sda.group11.onlinestore.model.User;
 
@@ -21,4 +20,6 @@ public interface IUserService {
     List<User> findUserByRole(Role role);
 
     User createUser(User user);
+
+    void deleteUserById(Long id);
 }

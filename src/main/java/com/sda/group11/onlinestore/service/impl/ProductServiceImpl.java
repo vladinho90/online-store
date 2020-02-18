@@ -7,7 +7,6 @@ import com.sda.group11.onlinestore.repository.ProductRepository;
 import com.sda.group11.onlinestore.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -52,7 +51,6 @@ public class ProductServiceImpl implements IProductService {
     public List<Product> findAllProductByCategory(Category category) {
         return productRepository.findAllByCategory(category);
     }
-
 
     @Override
     public void increaseStock(Long productId, int quantity) {

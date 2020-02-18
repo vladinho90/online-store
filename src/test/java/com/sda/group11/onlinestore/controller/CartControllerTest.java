@@ -1,8 +1,7 @@
 package com.sda.group11.onlinestore.controller;
 
 import com.sda.group11.onlinestore.RestIntegrationTest;
-import com.sda.group11.onlinestore.dto.order_line.OrderLineResponse;
-import com.sda.group11.onlinestore.dto.orders.OrderResponse;
+import com.sda.group11.onlinestore.dto.order.OrderResponse;
 import com.sda.group11.onlinestore.model.*;
 import com.sda.group11.onlinestore.model.enums.Category;
 import com.sda.group11.onlinestore.model.enums.Role;
@@ -10,17 +9,12 @@ import com.sda.group11.onlinestore.repository.CartItemRepository;
 import com.sda.group11.onlinestore.repository.CartRepository;
 import com.sda.group11.onlinestore.repository.ProductRepository;
 import com.sda.group11.onlinestore.repository.UserRepository;
-import com.sda.group11.onlinestore.service.impl.CartServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.util.TextEscapeUtils;
-import org.springframework.test.context.transaction.TestTransaction;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
