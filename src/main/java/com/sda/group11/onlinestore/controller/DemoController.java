@@ -25,7 +25,7 @@ public class DemoController {
     public String listProducts(Model theModel){
 
         //get producs from db
-        List<Product> productList= productService.findAllProducts();
+        List<Product> productList= productService.findAll();
 
         //add to the spring model
         theModel.addAttribute("products", productList);

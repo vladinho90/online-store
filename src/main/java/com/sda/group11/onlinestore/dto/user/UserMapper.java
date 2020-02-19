@@ -2,7 +2,6 @@ package com.sda.group11.onlinestore.dto.user;
 
 import com.sda.group11.onlinestore.model.User;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +14,7 @@ public class UserMapper {
         dto.setId(user.getId());
         dto.setUsername(user.getUsername());
         dto.setAddress(user.getAddress());
+        dto.setEmail(user.getEmail());
         return dto;
     }
 
@@ -29,6 +29,7 @@ public class UserMapper {
         entity.setUsername(userRequest.getUsername());
         entity.setPassword(userRequest.getPassword());
         entity.setAddress(userRequest.getAddress());
+        entity.setEmail(userRequest.getEmail());
         return entity;
     }
 

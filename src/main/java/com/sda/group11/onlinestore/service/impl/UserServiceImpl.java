@@ -33,24 +33,24 @@ public class UserServiceImpl implements IUserService {
     public CartItemRepository cartItemRepository;
 
     @Override
-    public void saveUser(User user) {
+    public void save(User user) {
         userRepository.save(user);
     }
 
     @Override
-    public List<User> findAllUsers() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
     @Override
-    public User findUserById(Long id) {
+    public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("user with id " + id + " not found"));
     }
 
     //nu prea avem cum sa schimbam username ul
     @Override
-    public User updateUser(Long id, User user) {
-        User userUpdate = findUserById(id);
+    public User update(Long id, User user) {
+        User userUpdate = findById(id);
         userUpdate.setAddress(user.getAddress());
         userUpdate.setOrdersList(user.getOrdersList());
         userUpdate.setPassword(user.getPassword());
@@ -80,8 +80,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void deleteUserById(Long id) {
+    public void delete(Long id) {
         userRepository.deleteById(id);
     }
-
 }

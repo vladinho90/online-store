@@ -20,28 +20,28 @@ public class OrderServiceImpl implements IOrderService {
     public OrderRepository orderRepository;
 
     @Override
-    public void saveOrder (Order order){
+    public void save (Order order){
         orderRepository.save(order);
     }
 
     @Override
-    public List<Order> findAllOrders(){
+    public List<Order> findAll(){
         return orderRepository.findAll();
     }
 
     @Override
-    public Order findOrderById(Long id){
+    public Order findById(Long id){
         return orderRepository.findById(id).orElseThrow(()->new RuntimeException("Order with id: "+id+" not found"));
     }
 
     @Override
-    public void deleteOrderById(Long id){
+    public void delete(Long id){
         orderRepository.deleteById(id);
     }
 
     @Override
-    public Order updateOrder(Long id, Order order){
-        Order orderUpdated= findOrderById(id);
+    public Order update(Long id, Order order){
+        Order orderUpdated= findById(id);
         orderUpdated.setDeliveryAddress(order.getDeliveryAddress());
         orderUpdated.setOrderLineList(order.getOrderLineList());
         orderUpdated.setStatus(order.getStatus());
