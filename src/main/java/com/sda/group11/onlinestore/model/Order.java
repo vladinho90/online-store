@@ -18,7 +18,7 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-//    @NotNull
+    //    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -116,5 +116,7 @@ public class Order {
                 '}';
     }
 }
+
+
 
 

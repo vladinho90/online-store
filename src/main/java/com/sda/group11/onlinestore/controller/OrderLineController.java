@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import java.util.List;
 
-//@Controller("/order")
+//@RestController
+//@RequestMapping("/api/order")
 public class OrderLineController {
 
+    //TODO nu stiu cata nevoie vom avea de acest controller
     @Autowired
     public com.sda.group11.onlinestore.service.IUserService IUserService;
     @Autowired
@@ -26,4 +28,6 @@ public class OrderLineController {
         User user= IUserService.findUserByUsername(principal.getName());
         return ResponseEntity.ok(IOrderService.findAllOrdersByUser(user));
     }
+
+
 }

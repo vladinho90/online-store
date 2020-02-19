@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+
 @Entity(name="Product")
 @Table(name="products")
 public class Product {
@@ -40,6 +41,9 @@ public class Product {
 
     @Column(name = "units_in_stock")
     private int unitsInStock;
+
+    @Column(name = "description")
+    private String description;
 
     public Product() {
     }
@@ -100,6 +104,14 @@ public class Product {
         this.unitsInStock = unitsInStock;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -123,6 +135,7 @@ public class Product {
                 ", stock=" + stock +
                 ", pictureURL='" + pictureURL + '\'' +
                 ", unitsInStock=" + unitsInStock +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

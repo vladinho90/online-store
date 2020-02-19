@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
-//@RestController
-//@RequestMapping("/order")
+@RestController
+@RequestMapping(OrderController.API_CATEGORY)
 public class OrderController {
 
+    public static final String API_CATEGORY = "/api/order";
     @Autowired
     private IOrderService ordersService;
 

@@ -152,7 +152,7 @@ class CartControllerTest extends RestIntegrationTest {
         address.setCountry("Romania");
         address.setPhoneNumber("0721639537");
         address.setStreet("Plantelor nr.34");
-        address.setZipCOde(810137);
+        address.setZipCode(810137);
         return address;
     }
 }

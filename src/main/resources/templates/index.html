@@ -19,7 +19,6 @@
 <body>
 <div class="container">
     <h3>Products</h3>
-    <h3>Users</h3>
     <hr>
 
     <table class="table table-border table-striped">
@@ -30,7 +29,6 @@
             <th>Price</th>
             <th>Units In Stock</th>
             <th>Stock</th>
-            <th>User</th>
         </tr>
         </thead>
         <tbody>
@@ -40,10 +38,6 @@
             <td th:text="${product.price}"/>
             <td th:text="${product.unitsInStock}"/>
             <td th:text="${product.stock}"/>
-        </tr>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.username}"/>
-            <td th:text="${user.address}"/>
         </tr>
         </tbody>
     </table>
