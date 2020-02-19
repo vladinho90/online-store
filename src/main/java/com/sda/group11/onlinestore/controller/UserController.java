@@ -11,7 +11,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
@@ -27,8 +27,8 @@ public class UserController {
         return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<User> findUserById(@PathVariable(name = "userId") Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<User> findUserById(@PathVariable(name = "id") Long id) {
         User user = userService.findUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }

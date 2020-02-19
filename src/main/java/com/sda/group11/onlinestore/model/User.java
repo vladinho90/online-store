@@ -1,13 +1,15 @@
 package com.sda.group11.onlinestore.model;
 
 import com.sda.group11.onlinestore.model.enums.Role;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
+
+@Entity(name = "User")
 @Table(name = "users")
 public class User {
 
@@ -16,7 +18,7 @@ public class User {
     @Column(name="user_id")
     private Long id;
 
-    @Column(name="username")
+    @Column(name="username",unique = true)
     @NotNull
     private String username;
 
@@ -24,15 +26,22 @@ public class User {
     @NotNull
     private String password;
 
+    @Email(message = "This is not a valid email")
+    @Column(name = "email",unique = true)
     @NotNull
+    private String email;
+
+    // @NotNull
     @Embedded
     private Address address;
 
+    //TODO sa facem si enabled?
     @Column(name="role")
-    @NotNull
+    //@NotNull
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
+    //TODO userul cred ca ar trebui sa porneasca cu un cart nou
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cart cart;
 
@@ -86,6 +95,15 @@ public class User {
         return cart;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    //TODO ma bate putin asta
     public void setCart(Cart cart) {
         cart.setUser(this);
         this.cart = cart;
@@ -118,8 +136,11 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 ", address=" + address +
                 ", role=" + role +
+                ", cart=" + cart +
+                ", ordersList=" + ordersList +
                 '}';
     }
 }

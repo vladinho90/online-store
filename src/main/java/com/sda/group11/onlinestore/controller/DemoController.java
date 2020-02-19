@@ -12,20 +12,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/product")
 public class DemoController {
+
+
 
     @Autowired
     public IProductService productService;
 
+
     @GetMapping("")
     public String listProducts(Model theModel){
 
-        //get products from db
+        //get producs from db
         List<Product> productList= productService.findAllProducts();
 
         //add to the spring model
         theModel.addAttribute("products", productList);
         return "index";
     }
+
+
 }
