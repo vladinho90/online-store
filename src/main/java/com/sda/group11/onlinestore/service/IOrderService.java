@@ -11,15 +11,16 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IOrderService {
-    void saveOrder(Order order);
 
-    List<Order> findAllOrders();
+    void save(Order order);
 
-    Order findOrderById(Long id);
+    List<Order> findAll();
 
-    void deleteOrderById(Long id);
+    Order findById(Long id);
 
-    Order updateOrder(Long id, Order order);
+    void delete(Long id);
+
+    Order update(Long id, Order order);
 
     List<Order> findAllOrdersByUser(User user);
 

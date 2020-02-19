@@ -59,7 +59,6 @@ public class CartController {
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponse> getCart(@PathVariable (name = "id") Long cartId){
         Order order = cartService.checkout(cartId);
-
         OrderResponse orderResponses = orderMapper.toDto(order);
         return new ResponseEntity<>(orderResponses, HttpStatus.OK);
     }

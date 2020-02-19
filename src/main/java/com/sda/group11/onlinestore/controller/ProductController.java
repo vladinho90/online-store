@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.security.Principal;
 import java.util.List;
 
@@ -22,29 +21,28 @@ public class ProductController {
 
     @Autowired
     public ProductRepository productRepository;
-//
-//    @PostMapping
-//    public ResponseEntity<Product> createProduct(@RequestBody Product request) {
-//
-//        ResponseEntity<Product> productResponseEntity = new ResponseEntity<Product>(productService.saveProduct(request), HttpStatus.CREATED);
-//        return productResponseEntity;
-//    }
+
+   @PostMapping
+    public ResponseEntity<Product> create (@RequestBody Product request) {
+       productService.save(request);
+      return new ResponseEntity<Product>(HttpStatus.CREATED);
+  }
 
     @GetMapping
-    public ResponseEntity<List<Product>> findAllProducts() {
-        return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
+    public ResponseEntity<List<Product>> findAll() {
+        return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> findProductById(@PathVariable(name = "id") Long id){
-        Product product= productService.findProductById(id);
+    public ResponseEntity<Product> findById(@PathVariable(name = "id") Long id){
+        Product product= productService.findById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable(name = "id") Long id, Principal principal) {
+    public ResponseEntity<String> delete (@PathVariable(name = "id") Long id, Principal principal) {
         principal.getName();
-        productService.deleteProductById(id);
+        productService.delete(id);
         return new ResponseEntity<>("product deleted", HttpStatus.OK);
     }
 
@@ -52,7 +50,7 @@ public class ProductController {
     public ResponseEntity<Product> update(@PathVariable(name = "id") Long id,
                                           @RequestBody Product request, Principal principal) {
         principal.getName();
-        Product response = productService.updateProduct(id, request);
+        Product response = productService.update(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     //    @GetMapping("/search")
@@ -63,14 +61,9 @@ public class ProductController {
 //        return new ResponseEntity<>(products, HttpStatus.OK);
 //    }
 
-
-
     @GetMapping("/search")
     public ResponseEntity<List<Product>> searchForProducts(@RequestParam(name = "product") String productSearch){
-
         List<Product> productsSearch= productRepository.searchForProducts(productSearch);
-
         return new ResponseEntity<>(productsSearch, HttpStatus.OK);
     }
-
 }

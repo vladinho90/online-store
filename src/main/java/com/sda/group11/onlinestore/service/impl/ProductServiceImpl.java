@@ -1,6 +1,5 @@
 package com.sda.group11.onlinestore.service.impl;
 
-
 import com.sda.group11.onlinestore.model.enums.Category;
 import com.sda.group11.onlinestore.model.Product;
 import com.sda.group11.onlinestore.repository.ProductRepository;
@@ -16,28 +15,28 @@ public class ProductServiceImpl implements IProductService {
     public ProductRepository productRepository;
 
     @Override
-    public void saveProduct(Product product) {
+    public void save(Product product) {
         productRepository.save(product);
     }
 
     @Override
-    public List<Product> findAllProducts() {
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 
     @Override
-    public Product findProductById(Long id) {
+    public Product findById(Long id) {
         return productRepository.findById(id).orElseThrow(() -> new RuntimeException("product with id " + id + " not found"));
     }
 
     @Override
-    public void deleteProductById(Long id) {
+    public void delete(Long id) {
         productRepository.deleteById(id);
     }
 
     @Override
-    public Product updateProduct(Long id, Product product) {
-        Product productUpdated = findProductById(id);
+    public Product update(Long id, Product product) {
+        Product productUpdated = findById(id);
         productUpdated.setCategory(product.getCategory());
         productUpdated.setPictureURL(product.getPictureURL());
         productUpdated.setPrice(product.getPrice());
@@ -48,25 +47,25 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List<Product> findAllProductByCategory(Category category) {
+    public List<Product> findAllProductsByCategory(Category category) {
         return productRepository.findAllByCategory(category);
     }
 
     @Override
     public void increaseStock(Long productId, int quantity) {
-        Product product = findProductById(productId);
+        Product product = findById(productId);
         if (product == null) {
             throw new RuntimeException("Product with id: " + productId + " not found");
         }
         int updateStock = product.getUnitsInStock() + quantity;
         product.setUnitsInStock(updateStock);
-        updateProduct(productId,product);
+        update(productId,product);
         productRepository.save(product);
     }
 
     @Override
     public void decreaseStock(Long productId, int quantity) {
-        Product product = findProductById(productId);
+        Product product = findById(productId);
         if (product == null) {
             throw new RuntimeException("Product with id: " + productId + " not found");
         }
@@ -77,7 +76,7 @@ public class ProductServiceImpl implements IProductService {
             throw new RuntimeException("Product not enough");
         }
         product.setUnitsInStock(updateStock);
-        updateProduct(productId,product);
+        update(productId,product);
         productRepository.save(product);
     }
 }

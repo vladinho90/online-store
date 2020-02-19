@@ -1,24 +1,24 @@
 package com.sda.group11.onlinestore.service;
 
-
 import com.sda.group11.onlinestore.model.enums.Category;
 import com.sda.group11.onlinestore.model.Product;
-
 import java.util.List;
 
 public interface IProductService {
 
-    void saveProduct(Product product);
+    void save(Product product);
 
-    List<Product> findAllProducts();
+    //ProductResponse saveProduct(ProductRequest request);
 
-    Product findProductById(Long id);
+    List<Product> findAll();
 
-    void deleteProductById(Long id);
+    Product findById(Long id);
 
-    Product updateProduct(Long id, Product product);
+    void delete(Long id);
 
-    List<Product> findAllProductByCategory(Category category);
+    Product update(Long id, Product product);
+
+    List<Product> findAllProductsByCategory(Category category);
 
     void increaseStock(Long productId, int quantity);
 
