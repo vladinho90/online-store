@@ -19,6 +19,7 @@ public class ProductMapper {
         dto.setStock(product.isStock());
         dto.setUnitsInStock(product.getUnitsInStock());
         dto.setPictureURL(product.getPictureURL());
+        dto.setDescription(product.getDescription());
         return dto;
     }
 
@@ -36,6 +37,7 @@ public class ProductMapper {
         entity.setStock(productRequest.isStock());
         entity.setUnitsInStock(productRequest.getUnitsInStock());
         entity.setPictureURL(productRequest.getPictureURL());
+        entity.setDescription(productRequest.getDescription());
         return entity;
     }
 

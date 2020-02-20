@@ -8,13 +8,13 @@ import java.util.List;
 public interface ICartItemService {
 
 
-    void saveCartItem(CartItem cartItem);
+    void save(CartItem cartItem);
 
-    List<CartItem> findAllCartItems();
+    List<CartItem> findAll();
 
-    CartItem findCartItemById(Long id);
+    CartItem findById(Long id);
 
-    void deleteCartItemById(Long id);
+    void delete(Long id);
 
-    CartItem updateCartItem(Long id, CartItem cartItem);
+    CartItem update(Long id, CartItem cartItem);
 }

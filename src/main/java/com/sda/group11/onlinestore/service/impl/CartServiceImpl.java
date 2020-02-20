@@ -125,8 +125,6 @@ public class CartServiceImpl implements ICartService {
         BigDecimal totalPrice = orderLineList.stream()
                 .map(OrderLine::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-
-
         order.setTotalPrice(totalPrice);
 
         order.setOrderLineList(orderLineList);
