@@ -22,14 +22,14 @@ public class User {
     @NotNull
     private String username;
 
-    @Column(name="password")
-    @NotNull
-    private String password;
-
     @Email(message = "This is not a valid email")
     @Column(name = "email",unique = true)
     @NotNull
     private String email;
+
+    @Column(name="full_name")
+   // @NotNull
+    private String fullName;
 
     // @NotNull
     @Embedded
@@ -67,14 +67,6 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Address getAddress() {
         return address;
     }
@@ -101,6 +93,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     //TODO ma bate putin asta
@@ -135,7 +135,6 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", address=" + address +
                 ", role=" + role +

@@ -7,7 +7,11 @@
         <img src="assets/images/logo.png" alt="tankstore" class="img-responsive">
       </a>
     </div>
-   <app-product-category-menu></app-product-category-menu>
+    <button class="btn btn-primary" *ngIf="!isAuthenticated" (click)="login()"> Login </button>
+    <button *ngIf="isAuthenticated" class="btn btn-success" (click)="logout()"> Logout </button>
+
+
+    <app-product-category-menu></app-product-category-menu>
   </aside>
   <!-- END MENU SIDEBAR-->
   <!-- PAGE CONTAINER-->
@@ -17,17 +21,22 @@
       <div class="section-content section-content-p30">
         <div class="container-fluid">
           <div class="header-wrap">
-           <app-search></app-search>
+            <app-search></app-search>
             <div class="cart-area d-n">
-              <a href="shopping-detail.html">
-                <div class="total">19.22 <span> 2</span> </div> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <a *ngIf="user" routerLink='/user/{{user?.username}}'>
+                <div class="total">{{user?.fullName}}: 19.22 <span> 2</span> </div> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
               </a>
             </div>
+
+
+            
+
           </div>
           <div class="account-wrap"></div>
         </div>
       </div>
     </header>
+    
     <!-- END HEADER DESKTOP-->
 
     <!-- MAIN CONTENT-->
@@ -42,7 +51,7 @@
 
 <footer>
   <ul>
-    <li><a href="#">About Us</a></li>
+    <li><a href="#">About Us {{user?.id}}</a></li>
     <li><a href="#">Contact Us</a></li>
     <li><a href="#">Help</a></li>
   </ul>

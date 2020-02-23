@@ -15,6 +15,7 @@ public class UserMapper {
         dto.setUsername(user.getUsername());
         dto.setAddress(user.getAddress());
         dto.setEmail(user.getEmail());
+        dto.setFullName(user.getFullName());
         return dto;
     }
 
@@ -27,9 +28,9 @@ public class UserMapper {
     public User toEntity(UserRequest userRequest) {
         User entity = new User();
         entity.setUsername(userRequest.getUsername());
-        entity.setPassword(userRequest.getPassword());
         entity.setAddress(userRequest.getAddress());
         entity.setEmail(userRequest.getEmail());
+        entity.setFullName(userRequest.getFullName());
         return entity;
     }
 

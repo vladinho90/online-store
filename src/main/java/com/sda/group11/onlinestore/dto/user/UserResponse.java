@@ -8,6 +8,7 @@ public class UserResponse {
     private String username;
     private Address address;
     private String email;
+    private String fullName;
 
     public Long getId() {
         return id;
@@ -31,6 +32,14 @@ public class UserResponse {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
