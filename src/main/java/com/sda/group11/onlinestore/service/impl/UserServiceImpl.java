@@ -12,7 +12,9 @@ import com.sda.group11.onlinestore.service.IProductService;
 import com.sda.group11.onlinestore.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -43,24 +45,26 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("user with id " + id + " not found"));
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     //nu prea avem cum sa schimbam username ul
     @Override
     public User update(Long id, User user) {
-        User userUpdate = findById(id);
+        User userUpdate = findById(id).orElseThrow( () -> new RuntimeException("not found"));
         userUpdate.setAddress(user.getAddress());
         userUpdate.setOrdersList(user.getOrdersList());
-        userUpdate.setPassword(user.getPassword());
+       // userUpdate.setPassword(user.getPassword());
         userUpdate.setRole(user.getRole());
         userUpdate.setUsername(user.getUsername());
+        userUpdate.setFullName(user.getFullName());
         return userRepository.save(userUpdate);
     }
 
     @Override
-    public User findUserByUsername(String username) {
+    public Optional<User> findUserByUsername(String username)
+    {
        return userRepository.findUserByUsername(username);
     }
 

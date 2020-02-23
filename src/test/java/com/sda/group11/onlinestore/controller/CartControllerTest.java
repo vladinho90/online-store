@@ -54,7 +54,7 @@ class CartControllerTest extends RestIntegrationTest {
         User user = new User();
         user.setUsername("vlad");
         user.setAddress(address);
-        user.setPassword("password");
+
         user.setRole(Role.USER);
         user.setCart(new Cart());
 

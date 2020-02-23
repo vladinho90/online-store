@@ -1,2 +1,3 @@
 npm install @fortawesome/fontawesome-free
 ng add @ng-bootstrap/schematics
+npm install @okta/okta-angular --save
