@@ -1,0 +1,18 @@
+<!--Created by- https://bootsnipp.com/ishwarkatwe-->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="nav-side-menu">
+    
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out" *ngFor="let tempCategory of categories">
+                <li>
+                  <a routerLink="/category/{{tempCategory}}">
+                  <i class="fa fa-dashboard fa-lg"></i> {{tempCategory}}
+                  </a>
+                </li>
+            </ul>
+     </div>
+</div>

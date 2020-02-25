@@ -1,25 +1,27 @@
 package com.sda.group11.onlinestore.service;
 
-import com.sda.group11.onlinestore.model.enums.Role;
 import com.sda.group11.onlinestore.model.User;
 
 import java.util.List;
 
 public interface IUserService {
 
-    void saveUser(User user);
+    User saveUser(User user);
+
+    User findByUsername(String username);
+
+    User findByEmail(String email);
 
     List<User> findAllUsers();
 
-    User findUserById(Long id);
+    void save(User user);
 
-    User updateUser(Long id, User user);
+    List<User> findAll();
 
-    User findUserByUsername(String username);
+    User findById(Long id);
 
-    List<User> findUserByRole(Role role);
+    User update(Long id, User user);
 
-    User createUser(User user);
+    void delete(Long id);
 
-    void deleteUserById(Long id);
 }

@@ -83,7 +83,7 @@ public class OrderLine {
                 ", product=" + product +
                 ", quantity=" + quantity +
                 ", price=" + price +
-                ", order=" + order +
+           //     ", order=" + order +
                 '}';
     }
 

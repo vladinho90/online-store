@@ -1,6 +1,43 @@
-<div>This is the app component</div>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <a routerLink="/" class="navbar-brand">
+    <img src="assets/tanc.png" width="30" height="30" class="d-inline-block align-top" />
+    Tanc Store
+  </a>
+  <div class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a href="/admin" class="nav-link" *ngIf="isAdmin">Admin Panel</a>
+    </li>
+  </div>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <app-search></app-search>
+  
+  <div class="navbar-nav ml-auto" *ngIf="!currentUser">
+    <li class="nav-item">
+      <a href="/register" class="nav-link">
+        <span class="glyphicon glyphicon-user"></span> Sign Up
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/login" class="nav-link">
+        <span class="glyphicon glyphicon-log-in"></span> Login
+      </a>
+    </li>
+  </div>
+  <div class="navbar-nav ml-auto" *ngIf="currentUser">
+    <li class="nav-item">
+      <a href="/profile" class="nav-link">
+        <span class="glyphicon glyphicon-user"></span> {{currentUser.name}}
+      </a>
+    </li>
+    <li class="nav-item">
+      <a (click)="logOut()" class="nav-link">
+        <span class="glyphicon glyphicon-log-in"></span> LogOut
+      </a>
+    </li>
+  </div>
+</nav>
+<app-category-menu ></app-category-menu>
 
-<div class="content" role="main">
-  <router-outlet></router-outlet>
-
-</div>
+<router-outlet></router-outlet>
+<script src="https://cdn.rawgit.com/download/glyphicons/0.1.0/glyphicons.js"></script>

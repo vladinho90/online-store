@@ -51,7 +51,7 @@ public class CartController {
     //orderline ul e in functie de user si order
     @GetMapping()
     public ResponseEntity<List<OrderLineResponse>> getOrdersLine(Principal principal){
-        User user = userService.findUserByUsername(principal.getName());
+        User user = userService.findByUsername(principal.getName());
         return null;
 
     }
@@ -59,7 +59,6 @@ public class CartController {
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponse> getCart(@PathVariable (name = "id") Long cartId){
         Order order = cartService.checkout(cartId);
-
         OrderResponse orderResponses = orderMapper.toDto(order);
         return new ResponseEntity<>(orderResponses, HttpStatus.OK);
     }

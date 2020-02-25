@@ -22,7 +22,7 @@ public class Address {
 
     @Column(name = "zip_code")
     @NotNull
-    private int zipCOde;
+    private int zipCode;
 
     @Column(name = "phone_number")
     @NotNull
@@ -55,12 +55,12 @@ public class Address {
         this.street = street;
     }
 
-    public int getZipCOde() {
-        return zipCOde;
+    public int getZipCode() {
+        return zipCode;
     }
 
-    public void setZipCOde(int zipCOde) {
-        this.zipCOde = zipCOde;
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getPhoneNumber() {
@@ -77,7 +77,7 @@ public class Address {
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
-                ", zipCOde=" + zipCOde +
+                ", zipCode=" + zipCode +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
@@ -87,7 +87,7 @@ public class Address {
         if (this == o) return true;
         if (!(o instanceof Address)) return false;
         Address address = (Address) o;
-        return getZipCOde() == address.getZipCOde() &&
+        return getZipCode() == address.getZipCode() &&
                 Objects.equals(getCountry(), address.getCountry()) &&
                 Objects.equals(getCity(), address.getCity()) &&
                 Objects.equals(getStreet(), address.getStreet()) &&
@@ -96,6 +96,6 @@ public class Address {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCountry(), getCity(), getStreet(), getZipCOde(), getPhoneNumber());
+        return Objects.hash(getCountry(), getCity(), getStreet(), getZipCode(), getPhoneNumber());
     }
 }

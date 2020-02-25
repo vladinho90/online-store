@@ -21,7 +21,6 @@ public class RandomService {
     @Autowired
     IOrderLineService IOrderLineService;
 
-
     public OrderLine createOrderLine(Product product, Order order) {
         OrderLine orderLine = new OrderLine();
         orderLine.setProduct(product);
@@ -32,7 +31,7 @@ public class RandomService {
         if (product.getUnitsInStock() == 0) {
             product.setStock(false);
         }
-        IOrderLineService.saveOrderLine(orderLine);
+        IOrderLineService.save(orderLine);
         return orderLine;
     }
 
@@ -42,7 +41,7 @@ public class RandomService {
             return orderOptional.get();
         } else {
             Order order = new Order();
-            IOrderService.saveOrder(order);
+            IOrderService.save(order);
             return order;
         }
     }
@@ -86,8 +85,6 @@ public class RandomService {
             product.setUnitsInStock(orderLine.getProduct().getUnitsInStock() + 1);
         }
         product.setUnitsInStock(orderLine.getProduct().getUnitsInStock() + 1);
-        IOrderLineService.deleteOrderLineById(orderLine.getId());
+        IOrderLineService.delete(orderLine.getId());
     }
-
-
 }

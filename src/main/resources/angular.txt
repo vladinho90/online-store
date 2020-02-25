@@ -1,0 +1,2 @@
+npm install @fortawesome/fontawesome-free
+ng add @ng-bootstrap/schematics
