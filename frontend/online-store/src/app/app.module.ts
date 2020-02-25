@@ -1,42 +1,48 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ProductService } from './services/product.service';
-import { Routes, RouterModule } from '@angular/router';
-import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
-import { SearchComponent } from './components/search/search.component';
-import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const routes: Routes = [ //specific to generic
-  
-  { path: 'search/:keyword' , component: ProductListComponent}, 
-  { path: 'products/:id' , component: ProductDetailsComponent},
-  { path: 'category/:name', component: ProductListComponent },
-  { path: 'category/', component: ProductListComponent },
-  { path: 'products', component: ProductListComponent },
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: '**', redirectTo: '/products', pathMatch: 'full' }
-]
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NotFoundComponent } from './components/error/not-found/not-found.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegisterComponent } from './components/user/register/register.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { AdminComponent } from './components/user/admin/admin.component';
+import { DetailComponent } from './components/user/detail/detail.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { CategoryMenuComponent } from './components/product/category-menu/category-menu.component';
+import { SearchComponent } from './components/product/search/search/search.component';
+import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    AdminComponent,
+    DetailComponent,
     ProductListComponent,
-    ProductCategoryMenuComponent,
+    CategoryMenuComponent,
     SearchComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+   
   ],
   imports: [
-    RouterModule.forRoot(routes),
     BrowserModule,
-    NgbModule.forRoot(),
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ProductService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

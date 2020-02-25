@@ -3,34 +3,51 @@ package com.sda.group11.onlinestore.service.impl;
 
 import com.sda.group11.onlinestore.model.Cart;
 import com.sda.group11.onlinestore.model.User;
-import com.sda.group11.onlinestore.model.enums.Role;
-import com.sda.group11.onlinestore.repository.CartItemRepository;
 import com.sda.group11.onlinestore.repository.CartRepository;
-import com.sda.group11.onlinestore.repository.OrderRepository;
 import com.sda.group11.onlinestore.repository.UserRepository;
-import com.sda.group11.onlinestore.service.IProductService;
 import com.sda.group11.onlinestore.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements IUserService {
 
-    @Autowired
-    public UserRepository userRepository;
 
     @Autowired
     public CartRepository cartRepository;
 
     @Autowired
-    public OrderRepository orderRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public IProductService productService;
+    private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public CartItemRepository cartItemRepository;
+    @Override
+    public User saveUser(User user){
+        user.setEmail(user.getEmail());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Cart newCart = cartRepository.save(new Cart());
+        newCart.setUser(user);
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username).orElse(null);
+    }
+
+    @Override
+    public List<User> findAllUsers(){
+        return userRepository.findAll();
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
 
     @Override
     public void save(User user) {
@@ -57,26 +74,6 @@ public class UserServiceImpl implements IUserService {
         userUpdate.setRole(user.getRole());
         userUpdate.setUsername(user.getUsername());
         return userRepository.save(userUpdate);
-    }
-
-    @Override
-    public User findUserByUsername(String username) {
-       return userRepository.findUserByUsername(username);
-    }
-
-    @Override
-    public List<User> findUserByRole(Role role) {
-        return userRepository.findAllByRole(role);
-    }
-
-    @Override
-    public User createUser(User user) {
-
-        User newUser = userRepository.save(user);
-        //create cart
-        Cart newCart = cartRepository.save(new Cart());
-        newCart.setUser(newUser);
-        return userRepository.save(newUser);
     }
 
     @Override

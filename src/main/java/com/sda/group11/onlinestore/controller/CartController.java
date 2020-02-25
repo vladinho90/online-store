@@ -51,7 +51,7 @@ public class CartController {
     //orderline ul e in functie de user si order
     @GetMapping()
     public ResponseEntity<List<OrderLineResponse>> getOrdersLine(Principal principal){
-        User user = userService.findUserByUsername(principal.getName());
+        User user = userService.findByUsername(principal.getName());
         return null;
 
     }

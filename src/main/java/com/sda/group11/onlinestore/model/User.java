@@ -1,5 +1,6 @@
 package com.sda.group11.onlinestore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sda.group11.onlinestore.model.enums.Role;
 
 import javax.persistence.*;
@@ -15,19 +16,19 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private Long id;
 
-    @Column(name="username",unique = true)
+    @Column(name = "username", unique = true)
     @NotNull
     private String username;
 
-    @Column(name="password")
+    @Column(name = "password")
     @NotNull
     private String password;
 
     @Email(message = "This is not a valid email")
-    @Column(name = "email",unique = true)
+    @Column(name = "email", unique = true)
     @NotNull
     private String email;
 
@@ -36,13 +37,19 @@ public class User {
     private Address address;
 
     //TODO sa facem si enabled?
-    @Column(name="role")
+    @Column(name = "role")
     //@NotNull
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
+    //nu va fi stocat in baza de date
+    @Transient
+    private String token;
+
+    //dc nu merge fara json ignore
     //TODO userul cred ca ar trebui sa porneasca cu un cart nou
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Cart cart;
 
     @OneToMany(mappedBy = "user")
@@ -115,6 +122,14 @@ public class User {
 
     public void setOrdersList(List<Order> ordersList) {
         this.ordersList = ordersList;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

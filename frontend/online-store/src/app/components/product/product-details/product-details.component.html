@@ -1,0 +1,33 @@
+
+<div class="container page-wrapper">
+    <div class="page-inner">
+      <div class="row">
+        <div class="el-wrapper">
+          <div class="box-up">
+            <img class="img"  src="{{product.pictureURL}}" alt="{{product.title}}">
+            <div class="img-info">
+              <div class="info-inner">
+                <span class="p-name">{{product.title}}</span>
+                <span class="p-company">{{product.description}}</span>
+              </div>
+              <!-- TODO sa pun aici sa vad doar size la haine si adidasi -->
+              <div class="a-size">Available sizes : <span class="size">S , M , L , XL</span></div>
+            </div>
+          </div>
+  
+          <div class="box-down">
+            <div class="h-bg">
+              <div class="h-bg-inner"></div>
+            </div>
+  
+            <a class="cart" href="#">
+              <span class="price">{{product.price | currency:'USD'}}</span>
+              <span class="add-to-cart">
+                <span class="txt">Add in cart</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
