@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //cross-origin resource  because we owrks with diffrenre ports
+        //cross-origin resource  because we works with diffrenre ports
         http.cors().and()
                 .authorizeRequests()
                 //These are public pages
