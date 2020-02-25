@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -60,23 +61,48 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("user with id " + id + " not found"));
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     //nu prea avem cum sa schimbam username ul
     @Override
     public User update(Long id, User user) {
-        User userUpdate = findById(id);
+        User userUpdate = findById(id).orElseThrow( () -> new RuntimeException("not found"));
         userUpdate.setAddress(user.getAddress());
         userUpdate.setOrdersList(user.getOrdersList());
-        userUpdate.setPassword(user.getPassword());
+       // userUpdate.setPassword(user.getPassword());
         userUpdate.setRole(user.getRole());
         userUpdate.setUsername(user.getUsername());
+        userUpdate.setFullName(user.getFullName());
         return userRepository.save(userUpdate);
     }
 
     @Override
+<<<<<<< HEAD
+=======
+    public Optional<User> findUserByUsername(String username)
+    {
+       return userRepository.findUserByUsername(username);
+    }
+
+    @Override
+    public List<User> findUserByRole(Role role) {
+        return userRepository.findAllByRole(role);
+    }
+
+    @Override
+    public User createUser(User user) {
+
+        User newUser = userRepository.save(user);
+        //create cart
+        Cart newCart = cartRepository.save(new Cart());
+        newCart.setUser(newUser);
+        return userRepository.save(newUser);
+    }
+
+    @Override
+>>>>>>> 715dea130b8b7888f9c56bd67edaf6d50319aed7
     public void delete(Long id) {
         userRepository.deleteById(id);
     }

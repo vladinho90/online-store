@@ -124,8 +124,13 @@
       }
     }
   },
+<<<<<<< HEAD
   "defaultProject": "register",
   "cli": {
     "analytics": "b6c91d0e-fe79-4c89-b1d7-4dae97de9911"
   }
 }
+=======
+  "defaultProject": "online-store"
+}
+>>>>>>> 715dea130b8b7888f9c56bd67edaf6d50319aed7

@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@angular/animations": "~9.0.2",
     "@angular/cdk": "^9.0.1",
     "@angular/common": "~9.0.2",
@@ -24,6 +25,22 @@
     "bootstrap": "^4.4.1",
     "glyphicons": "^0.2.0",
     "rxjs": "~6.5.4",
+=======
+    "@angular/animations": "~8.2.14",
+    "@angular/common": "~8.2.14",
+    "@angular/compiler": "~8.2.14",
+    "@angular/core": "~8.2.14",
+    "@angular/forms": "~8.2.14",
+    "@angular/platform-browser": "~8.2.14",
+    "@angular/platform-browser-dynamic": "~8.2.14",
+    "@angular/router": "~8.2.14",
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@ng-bootstrap/ng-bootstrap": "^2.0.0-alpha.0",
+    "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
+    "@okta/okta-angular": "^1.4.0",
+    "bootstrap": "^4.0.0",
+    "rxjs": "~6.4.0",
+>>>>>>> 715dea130b8b7888f9c56bd67edaf6d50319aed7
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

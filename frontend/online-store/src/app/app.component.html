@@ -17,12 +17,52 @@
       <a href="/register" class="nav-link">
         <span class="glyphicon glyphicon-user"></span> Sign Up
       </a>
+<<<<<<< HEAD
     </li>
     <li class="nav-item">
       <a href="/login" class="nav-link">
         <span class="glyphicon glyphicon-log-in"></span> Login
       </a>
     </li>
+=======
+    </div>
+    <button class="btn btn-primary" *ngIf="!isAuthenticated" (click)="login()"> Login </button>
+    <button *ngIf="isAuthenticated" class="btn btn-success" (click)="logout()"> Logout </button>
+
+
+    <app-product-category-menu></app-product-category-menu>
+  </aside>
+  <!-- END MENU SIDEBAR-->
+  <!-- PAGE CONTAINER-->
+  <div class="page-container">
+    <!-- HEADER DESKTOP-->
+    <header class="header-desktop">
+      <div class="section-content section-content-p30">
+        <div class="container-fluid">
+          <div class="header-wrap">
+            <app-search></app-search>
+            <div class="cart-area d-n">
+              <a *ngIf="user" routerLink='/user/{{user?.username}}'>
+                <div class="total">{{user?.fullName}}: 19.22 <span> 2</span> </div> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              </a>
+            </div>
+
+
+            
+
+          </div>
+          <div class="account-wrap"></div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- END HEADER DESKTOP-->
+
+    <!-- MAIN CONTENT-->
+    <!-- <app-product-list></app-product-list> -->
+    <router-outlet></router-outlet>
+
+>>>>>>> 715dea130b8b7888f9c56bd67edaf6d50319aed7
   </div>
   <div class="navbar-nav ml-auto" *ngIf="currentUser">
     <li class="nav-item">
@@ -39,5 +79,15 @@
 </nav>
 <app-category-menu ></app-category-menu>
 
+<<<<<<< HEAD
 <router-outlet></router-outlet>
 <script src="https://cdn.rawgit.com/download/glyphicons/0.1.0/glyphicons.js"></script>
+=======
+<footer>
+  <ul>
+    <li><a href="#">About Us {{user?.id}}</a></li>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="#">Help</a></li>
+  </ul>
+</footer>
+>>>>>>> 715dea130b8b7888f9c56bd67edaf6d50319aed7
