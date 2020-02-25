@@ -1,11 +1,9 @@
 package com.sda.group11.onlinestore.controller;
 
-<<<<<<< HEAD
-import com.sda.group11.onlinestore.jwt.JwtTokenProvider;
-=======
+
 import com.sda.group11.onlinestore.dto.user.UserMapper;
 import com.sda.group11.onlinestore.dto.user.UserResponse;
->>>>>>> 715dea130b8b7888f9c56bd67edaf6d50319aed7
+import com.sda.group11.onlinestore.jwt.JwtTokenProvider;
 import com.sda.group11.onlinestore.model.User;
 import com.sda.group11.onlinestore.model.enums.Role;
 import com.sda.group11.onlinestore.service.IUserService;
@@ -35,15 +33,10 @@ public class UserController {
         return new ResponseEntity<>(userService.saveUser(request), HttpStatus.CREATED);
     }*/
 
-<<<<<<< HEAD
+
     @PostMapping("/registration")
     public ResponseEntity<?> register(@RequestBody User user){
         if(userService.findByUsername(user.getUsername())!= null){
-=======
-    @PostMapping
-    public ResponseEntity<User> create(@RequestBody User user) {
-        if (userService.findUserByUsername(user.getUsername()).isPresent()) {
->>>>>>> 715dea130b8b7888f9c56bd67edaf6d50319aed7
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         if(userService.findByEmail(user.getEmail())!= null){
@@ -69,7 +62,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
-        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
     }
 
   /*  @GetMapping("/{id}")

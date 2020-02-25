@@ -55,10 +55,7 @@ public class UserServiceImpl implements IUserService {
         userRepository.save(user);
     }
 
-    @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
+
 
     @Override
     public Optional<User> findById(Long id) {
@@ -79,30 +76,14 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-<<<<<<< HEAD
-=======
     public Optional<User> findUserByUsername(String username)
     {
        return userRepository.findUserByUsername(username);
     }
 
-    @Override
-    public List<User> findUserByRole(Role role) {
-        return userRepository.findAllByRole(role);
-    }
+
 
     @Override
-    public User createUser(User user) {
-
-        User newUser = userRepository.save(user);
-        //create cart
-        Cart newCart = cartRepository.save(new Cart());
-        newCart.setUser(newUser);
-        return userRepository.save(newUser);
-    }
-
-    @Override
->>>>>>> 715dea130b8b7888f9c56bd67edaf6d50319aed7
     public void delete(Long id) {
         userRepository.deleteById(id);
     }

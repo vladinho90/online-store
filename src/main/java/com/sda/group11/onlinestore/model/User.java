@@ -23,13 +23,12 @@ public class User {
     @NotNull
     private String username;
 
-<<<<<<< HEAD
+
     @Column(name = "password")
     @NotNull
     private String password;
 
-=======
->>>>>>> 715dea130b8b7888f9c56bd67edaf6d50319aed7
+
     @Email(message = "This is not a valid email")
     @Column(name = "email", unique = true)
     @NotNull
@@ -137,6 +136,14 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
