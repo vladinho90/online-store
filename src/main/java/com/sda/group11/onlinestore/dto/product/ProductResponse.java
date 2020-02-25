@@ -14,6 +14,15 @@ public class ProductResponse {
     private boolean stock;
     private int unitsInStock;
     private String pictureURL;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Long getId() {
         return id;

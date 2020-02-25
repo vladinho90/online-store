@@ -16,29 +16,29 @@ public class CartItemServiceImpl implements ICartItemService {
     public CartItemRepository cartItemRepository;
 
     @Override
-    public void saveCartItem(CartItem cartItem) {
+    public void save(CartItem cartItem) {
         cartItemRepository.save(cartItem);
     }
 
     @Override
-    public List<CartItem> findAllCartItems() {
+    public List<CartItem> findAll() {
         return cartItemRepository.findAll();
     }
 
     @Override
-    public CartItem findCartItemById(Long id) {
+    public CartItem findById(Long id) {
         return cartItemRepository.findById(id).orElseThrow((()->new RuntimeException("CartItem with id: "+id+" not found")));
     }
 
     @Override
-    public void deleteCartItemById(Long id) {
+    public void delete(Long id) {
         cartItemRepository.deleteById(id);
     }
 
     //nu cred ca poti schimba cartul , sau produsul
     @Override
-    public CartItem updateCartItem(Long id, CartItem cartItem) {
-       CartItem crtItem=findCartItemById(id);
+    public CartItem update(Long id, CartItem cartItem) {
+       CartItem crtItem=findById(id);
        crtItem.setCart(cartItem.getCart());
        crtItem.setProduct(cartItem.getProduct());
        crtItem.setQuantity(cartItem.getQuantity());
